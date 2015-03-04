@@ -1,0 +1,96 @@
+<div class="page-title">
+    <div class="container">
+        <h1>Apps</h1>
+        <ul class="breadcrumb">
+            <li><a href="<%= developer_index_url %>">Home</a> <span class="divider">/</span></li>
+            <li class="active">Apps</li>
+        </ul>
+        <form action="#" method="get" class="form-search search-header visible-desktop visible-tablet">
+            <a href="<%= app_new_developer_index_url %>" class="btn btn-primary">Create New App</a>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid app-list">
+        <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <% app_count = 0 %>
+            <ul class="event-list">
+                <% @apps.each do  |c|%>
+
+                <% app_count = 1 %>
+                <li>
+                    <img alt="<%= c.name%>" src="<%= (c.settings.icon ? c.settings.icon[:url] : '/assets/developer/default-app-icon.png') %>">
+                    <div class="info">
+                        <% if c.state == 'waiting'%>
+                        <a href="javascript:;">
+                            <h3 class="title"><%= c.name%>
+                                <span class="badge badge-warning">Waiting for approve</span>
+                            </h3>
+                        </a>
+                        <% elsif c.state == 'published'%>
+                        <a href="javascript:;">
+                            <h3 class="title"><%= c.name%>
+                                <span class="badge badge-success">Published</span>
+                            </h3>
+                        </a>
+                        <%else%>
+                        <a href="javascript:;">
+                            <h3 class="title"><%= c.name%></h3>
+                        </a>
+                        <%end%>
+                        <p class="desc"><%= c.description%></p>
+                        <ul>
+                            <li style="width:50%;"><span class="icon-money"></span> $<%= c.price%></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li style="width:34%;" class="app-setting">
+                                <% if c.state == 'waiting'%>
+                                <a title="" data-placement="top" data-toggle="tooltip" class="" href="javascript:;" data-original-title="Waiting for approve"><span class="icon-time"></span></a>
+                                <% elsif c.state == 'published'%>
+                                <a title="" data-placement="top" data-toggle="tooltip" href="<%= app_unpublish_developer_index_url(:id => c.id)%>" data-original-title="Un-Publish your app"><span class="icon-check"></span></a>
+                                <% else%>
+                                <a title="" data-placement="top" data-toggle="tooltip" href="<%= app_publish_developer_index_url(:id => c.id)%>" data-original-title="Publish your app"><span class="icon-check-empty"></span></a>
+                                <%end%>
+                            </li>
+                            <li class="app-edit" style="width:34%;"><a href="<%= app_edit_developer_index_url(:id => c.id)%>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit Your App"><span class="icon-edit"></span></a></li>
+                            <li class="app-remove" style="width:33%;"><a href="javascript:;" class="btnDeleteApp" url="<%= app_delete_developer_index_url(:id => c.id)%>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete app"><span class="icon-trash"></span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <%end%>
+            </ul>
+
+            <% if app_count == 0 %>
+            <p>
+                You don't have any App yet. Start creating one today!
+            </p>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    $('.btnDeleteApp').click(function(){
+        var url = $(this).attr('url');
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to delete this application!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#f35958",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+        function(){
+            window.location.href = url;
+        });
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

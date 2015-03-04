@@ -1,0 +1,52 @@
+.post_detail {
+	margin-left: 175px;
+	margin-right: 175px;
+}
+.username {
+	color: blue;
+}
+
+.btn-location {
+	float: right;
+}
+
+.add_new_member_form {
+	margin-left: 30px;
+}
+
+.member_table {
+	margin-left: 30px;
+}
+
+#table_width {
+	width: 90%;
+}
+
+.forem_form {
+	margin-left: -30px;
+}
+
+.forum_moderators label.check_boxes.optional{
+	float: left;
+	margin-right: 40px;
+}
+
+.forum_moderators .checkbox{
+	padding-left: 5px;
+}
+
+.forum_moderators .checkbox label{
+	display: inline;
+}
+
+#post_text {
+	margin-left: 1px;
+}
+
+#posts {
+	margin-left: 30px;
+}
+
+.post_link {
+	margin-left: -30px;
+}

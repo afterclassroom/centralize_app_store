@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   root 'home#index'
 
   devise_for :users
+
+  resources :developer do
+    collection do
+      get 'app_list', 'app_new', 'app_edit', 'app_delete', 'blog', 'document', 'authentication', 'partners', 'app_publish', 'app_unpublish'
+      post 'app_create', 'app_update', 'app_update_slide', 'app_update_publish', 'app_update_unpublish'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,231 @@
+<div class="page-title">
+	<div class="container">
+		<h1>Apps</h1>
+		<ul class="breadcrumb">
+			<li><a href="<%= developer_index_url %>">Home</a> <span class="divider">/</span></li>
+			<li class=""><a href="<%= app_list_developer_index_url %>">Apps</a> <span class="divider">/</span></li>
+			<li class="active"><%= @application.name%></li>
+		</ul>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row-fluid app-list">
+		<%= form_tag app_update_publish_developer_index_url, method: :post, class: 'form', id: 'frmAppPublish' do %>
+		<fieldset>
+
+			<h2>Publish your application</h2>
+
+			<% if !@client_app.errors.full_messages.empty? %>
+			<ul class="error">
+				<% @client_app.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+			<% end %>
+
+			<div class="control-group">
+				<label class="control-label">Name*</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 required" id="application_name" name="application[name]" type="text" placeholder="application name" value="<%= @application.name%>">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Description</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12" placeholder="description" id="application_description" name="application[description]" value="<%= @application.description%>">
+				</div>
+			</div>
+
+			<!-- Choose application type-->
+			<div class="control-group">
+				<label class="control-label">Your application is designed for? <small class="badge"><i class="icon-question-sign"></i> <a href="#">Learn more here</a></small></label>
+			</div>
+			<div class="control-group">
+				<div class="controls radio">
+					<input type="radio" <%= "checked" if @application.design_for == 0 %> value="0" name="application[designed]" class="opt_classroom">
+					Classroom
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls radio">
+					<input type="radio" <%= "checked" if @application.design_for == 1 %> value="1" name="application[designed]" class="opt_educator">
+					Educator
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls radio">
+					<input type="radio" <%= "checked" if @application.design_for == 2 %> value="2" name="application[designed]" class="opt_student">
+					Student
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls radio">
+					<input type="radio" <%= "checked" if @application.design_for == 3 %> value="3" name="application[designed]" class="opt_parent">
+					Parents
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Choose your application category <small class="badge"><i class="icon-question-sign"></i> <a href="#">Learn more here</a></small></label>
+			</div>
+
+			<% APP_STORE_CATEGORIES.each_with_index do |cat, i|%>
+			<div class="control-group">
+				<div class="controls checkbox">
+					<% category_id = APP_STORE_CATEGORIES.keys[i] %>
+					<input type="checkbox" <%= "checked" if @selected_category && @selected_category.include?(category_id)%> value="<%= category_id%>" name="application[category][]">
+					<%= APP_STORE_CATEGORIES.values[i]%>
+				</div>
+			</div>
+			<%end%>
+
+			<div class="control-group group_url url_teacher">
+				<label class="control-label">URL for teacher</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="URL" name="application[teacher_url]" value="<%= @application.teacher_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+			<div class="control-group group_url url_student">
+				<label class="control-label">URL for student</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="URL" name="application[student_url]" value="<%= @application.student_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+			<div class="control-group group_url url_parent" style="display: none">
+				<label class="control-label">URL for parents</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="URL" name="application[parent_url]" value="<%= @application.parent_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Help URL</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="URL" name="application[help_url]" value="<%= @application.help_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Your app's terms of service</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="Terms of service" name="application[tem_url]" value="<%= @application.tem_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Your app's privacy policy</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 url" placeholder="Privacy policy" name="application[privacy_url]" value="<%= @application.privacy_url%>">
+					<p class="help-block">Help text here.</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Cost to use your app</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge span12 decimalTwo" placeholder="Application amount" name="application[price]" value="<%= @application.price%>">
+					<p class="help-block">Leave blank or fill in zero if your app is free.</p>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Terms &amp; Condistions</label>
+				<div class="controls">
+					<div id="tos-box"><p>Last Update: October 22, 2014.</p>
+						<p>This gotoClassroom Developer Agreement (“<strong>Agreement</strong>”) is made between you (either an individual or an entity, referred to herein as “<strong>you</strong>”) and gotoClassroom, Inc., on behalf of itself and its worldwide affiliates (collectively, “<strong>gotoClassroom</strong>”) and governs your access to and use of the Licensed Material (as defined below).</p>
+						<p>PLEASE READ THE TERMS AND CONDITIONS OF THIS AGREEMENT CAREFULLY, INCLUDING WITHOUT LIMITATION ANY LINKED TERMS AND CONDITIONS APPEARING OR REFERENCED BELOW, WHICH ARE HEREBY MADE PART OF THIS LICENSE AGREEMENT. BY USING THE LICENSED MATERIAL, YOU ARE AGREEING THAT YOU HAVE READ, AND THAT YOU AGREE TO COMPLY WITH AND TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT AND ALL APPLICABLE LAWS AND REGULATIONS IN THEIR ENTIRETY WITHOUT LIMITATION OR QUALIFICATION. IF YOU DO NOT AGREE TO BE BOUND BY THIS AGREEMENT, THEN YOU MAY NOT ACCESS OR OTHERWISE USE THE LICENSED MATERIAL. THIS AGREEMENT IS EFFECTIVE AS OF THE FIRST DATE THAT YOU USE THE LICENSED MATERIAL (“<strong>EFFECTIVE DATE</strong>”).</p>
+						<p>IF YOU ARE AN INDIVIDUAL REPRESENTING AN ENTITY, YOU ACKNOWLEDGE THAT YOU HAVE THE APPROPRIATE AUTHORITY TO ACCEPT THIS AGREEMENT ON BEHALF OF SUCH ENTITY. YOU MAY NOT USE THE LICENSED MATERIAL AND MAY NOT ACCEPT THIS AGREEMENT IF YOU ARE NOT OF LEGAL AGE TO FORM A BINDING CONTRACT WITH gotoClassroom, OR YOU ARE BARRED FROM USING OR RECEIVING THE LICENSED MATERIAL UNDER APPLICABLE LAW.</p>
+						<h2>I. gotoClassroom API and gotoClassroom Content</h2>
+						<p><strong>A. Definitions </strong></p>
+						<ol><ol><li><strong>Content</strong> &#8210; Tweets, Tweet IDs, gotoClassroom end user profile information, and any other data and information made available to you through the gotoClassroom API or by any other means authorized by gotoClassroom, and any copies and derivative works thereof.</li>
+						</ol></ol><p></p>
+						<ol><ol><li><strong>Developer Site</strong> &#8210; gotoClassroom’s developer site located at <a target="_blank" href="https://dev.gotoclassroom.com">https://dev.gotoClassroom.com.</a></li>
+						</ol></ol><p></p>
+						<ol><ol><li><strong>End Users</strong> &#8210; Users of your Services, who are bound to enforceable service terms with you.</li>
+						</ol></ol><p></p>
+						<ol><ol><li><strong>Licensed Material</strong> &#8210; A collective term for the gotoClassroom API and Content.</li>
+						</ol></ol><p></p>
+						<ol><ol><li><strong>Services</strong> &#8210; Your websites, applications and other offerings that display Content or otherwise use the Licensed Material.</li>
+						</ol></ol><p></p>
+						<ol><ol>
+						</ol></ol><p></p>
+						<p></p>
+						<ol><ol><li><strong>gotoClassroom API</strong> &#8210; The gotoClassroom Application Programming Interface (“API”) and the related documentation, data, code, and other materials provided by Twitter with the API, as updated from time to time, including without limitation through the Developer Site.</li>
+						</ol></ol><p></p>
+						<ol type="A"><ol type="A"><li><strong>Miscellaneous.</strong> This Agreement constitutes the entire agreement among the parties with respect to the subject matter and supersedes and merges all prior proposals, understandings and contemporaneous communications. Any modification to this Agreement must be in a writing signed by both you and gotoClassroom. You may not assign any of the rights or obligations granted hereunder, in whole or in part, whether voluntarily or by operation of law, contract, merger (whether you are the surviving or disappearing entity), stock or asset sale, consolidation, dissolution, through government action or otherwise, except with the prior written consent of gotoClassroom. Any attempted assignment in violation of this paragraph is null and void, and gotoClassroom may terminate this Agreement. This Agreement does not create or imply any partnership, agency or joint venture. This Agreement will be governed by and construed in accordance with the laws of the State of California, without regard to or application of conflicts of law rules or principles. All claims arising out of or relating to this Agreement will be brought exclusively in the federal or state courts of San Francisco County, California, USA, and you consent to personal jurisdiction in those courts. Despite the foregoing, you agree that money damages would be an inadequate remedy for gotoClassroom in the event of a breach or threatened breach of a provision of this Agreement protecting gotoClassroom’s intellectual property or Confidential Information, and that in the event of such a breach or threat, gotoClassroom, in addition to any other remedies to which it is entitled, is entitled to such preliminary or injunctive relief (including an order prohibiting Company from taking actions in breach of such provisions), without the need for posting bond, and specific performance as may be appropriate. The parties agree that neither the United Nations Convention on Contracts for the International Sale of Goods, nor the Uniform Computer Information Transaction Act (UCITA) shall apply to this Agreement, regardless of the states in which the parties do business or are incorporated. No waiver by gotoClassroom of any covenant or right under this Agreement will be effective unless memorialized in a writing duly authorized by gotoClassroom. If any part of this Agreement is determined to be invalid or unenforceable by a court of competent jurisdiction, that provision will be enforced to the maximum extent permissible and the remaining provisions of this Agreement will remain in full force and effect.</li>
+						</ol></ol><p></p></div>
+					</div>
+				</div>
+
+				<input type="hidden" name="application[id]" value="<%= @application.id%>">
+
+				<div class="control-group">
+					<label class="control-label">&nbsp;</label>
+					<div class="controls">
+						<button class="btn btn-info" >I agree - Publish application</button>
+						<button class="btn btn-default" type="reset">Cancel</button>
+					</div>
+				</div>
+			</fieldset>
+			<%end%>
+		</div>
+	</div>
+
+	<style>
+	label.error{
+		color: red;
+	}
+	ul.error{
+		color: red; padding: 20px;
+	}
+	#frmAppPublish fieldset {
+		border: 0 none;
+		margin: 0;
+		padding: 0;
+	}
+	</style>
+
+	<script>
+	$(function(){
+		$('#frmAppPublish').validate();
+
+		$('.opt_classroom').click(function(){
+			$('.group_url').hide();
+			$('.url_teacher').show();
+			$('.url_student').show();
+		})
+
+		$('.opt_educator').click(function(){
+			$('.group_url').hide();
+			$('.url_teacher').show();
+		})
+
+		$('.opt_student').click(function(){
+			$('.group_url').hide();
+			$('.url_student').show();
+		})
+
+		$('.opt_parent').click(function(){
+			$('.group_url').hide();
+			$('.url_parent').show();
+		})
+
+		var design_for = "<%= @application.design_for%>";
+		if (design_for == null || design_for == 0){
+			$('.opt_classroom').click();
+		}else if(design_for == 1){
+			$('.opt_educator').click();
+		}else if(design_for == 2){
+			$('.opt_student').click();
+		}else{
+			$('.opt_parent').click();
+		}
+	});
+	</script>

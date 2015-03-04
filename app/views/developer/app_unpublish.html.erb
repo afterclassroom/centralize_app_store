@@ -1,0 +1,58 @@
+<div class="page-title">
+	<div class="container">
+		<h1>Apps</h1>
+		<ul class="breadcrumb">
+			<li><a href="<%= developer_index_url %>">Home</a> <span class="divider">/</span></li>
+			<li class=""><a href="<%= app_list_developer_index_url %>">Apps</a> <span class="divider">/</span></li>
+			<li class="active"><%= @client_app.name%></li>
+		</ul>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row-fluid app-list">
+		<%= form_tag app_update_unpublish_developer_index_url, method: :post, class: 'form', id: 'frmAppUnPublish' do %>
+		<fieldset>
+
+			<h2>Un-Publish your application</h2>
+
+			<div class="control-group">
+				<label class="control-label">Reason</label>
+				<div class="controls">
+					<textarea class="input-xlarge span12 required" minlength="3" placeholder="description" type="text" id="application_description" name="application[description]" rows="10"></textarea>
+				</div>
+			</div>
+
+			<input type="hidden" name="application[id]" value="<%= @client_app.id%>">
+
+			<div class="control-group">
+				<label class="control-label">&nbsp;</label>
+				<div class="controls">
+					<button class="btn btn-info" >Submit</button>
+					<button class="btn btn-default" type="reset">Cancel</button>
+				</div>
+			</div>
+		</fieldset>
+		<%end%>
+	</div>
+</div>
+
+<style>
+label.error{
+	color: red;
+}
+ul.error{
+	color: red; padding: 20px;
+}
+#frmAppUnPublish fieldset {
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
+</style>
+
+<script>
+$(function(){
+	$('#frmAppUnPublish').validate();
+});
+</script>

@@ -1,0 +1,165 @@
+<div class="page-title">
+	<div class="container">
+		<h1>Blog</h1>
+		<ul class="breadcrumb">
+			<li><a href="<%= developer_index_url %>">Home</a> <span class="divider">/</span></li>
+			<li class="active">Blog</li>
+		</ul>
+
+		<form action="blog.html" method="get" class="form-search search-header visible-desktop visible-tablet">
+			<input type="text" placeholder="Search..." name="search" style="padding: 14px; width: 207px;">
+			<button type="submit"><i class="icon-search"></i></button>
+		</form>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row-fluid blog">
+		<div class="la-anim-1"></div>
+		<!-- Blog Content -->
+		<div class="blog-content blog-items">
+
+			<div class="span8 content">
+
+				<div class="row-fluid blog-posts" style="margin-top: -20px;">
+					<div id="tumblr_posts"></div>
+					<div id="loadmore" class="loadmore">load more...</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- Blog Content end -->
+
+
+
+		<!-- Right Side -->
+		<div class="span4 sidebar">
+
+			<!-- Categories -->
+			<div class="widget">
+				<div class="categories">
+					<strong>Categories</strong>
+					<br>
+					<br>
+					<ul>
+						<li><a href="/blog.html?search=Hybrid-Education">Hybrid Education</a></li>
+						<li><a href="/blog.html?search=Student-Engagements">Student Engagements</a></li>
+						<li><a href="/blog.html?search=One-on-One-learning">One-on-One learning</a></li>
+						<li><a href="/blog.html?search=Integrate-applications-into-LMS">Integrate applications into LMS</a></li>
+						<li><a href="/blog.html?search=Learning-at-your-own-pace">Learning at your own pace</a></li>
+						<li><a href="/blog.html?search=Individualized-tutoring">Individualized tutoring</a></li>
+						<li><a href="/blog.html?search=Extracurricular-activity">Extracurricular activity</a></li>
+						<li><a href="/blog.html?search=Prepare-well-for-test%2Fexam">Prepare well for test/exam</a></li>
+						<li><a href="/blog.html?search=Choose-your-post-secondary-institution">Choose your post secondary institution</a></li>
+						<li><a href="/blog.html?search=Financial-assistance">Financial assistance</a></li>
+						<li><a href="/blog.html?search=Choose-my-field-of-study">Choose my field of study</a></li>
+						<li><a href="/blog.html?search=Deal-with-part-time-job-after-school">Deal with part time job after school</a></li>
+						<li><a href="/blog.html?search=Group-study">Group study</a></li>
+						<li><a href="/blog.html?search=Prepare-for-Internship%2FCo-op">Prepare for Internship/Co-op</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Categories end -->
+
+		</div>
+		<!-- Right Side end -->
+
+	</div>
+</div>
+
+<!-- BEGIN TUMBLR -->
+<link href="/homepage/css/tumblr.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/homepage/js/classie.js"></script>
+
+<script id="tumblrTemplate" type="text/x-jquery-tmpl">
+<div class="post_full">
+<div class="post_header">
+<a target="_blank" href="${short_url}">${blog_name}</a>
+<span class="date">${date}</span>
+</div>
+<div class="post_content">
+{{if type =='text'}}
+<h3>${title}</h3>
+{{html body}}
+{{/if}}
+
+{{if type =='photo'}}
+{{each(prop, val) photos}}
+<img rel="0" data-full-size="${val.alt_sizes[0].url}" data-thumbnail="${val.alt_sizes[0].url}" src="${val.alt_sizes[0].url}" alt="${val.caption}" class="image_thumbnail">
+{{/each}}
+<p>{{html caption}}</p>
+{{/if}}
+
+{{if type =='quote'}}
+<blockquote>{{html text}}</blockquote>
+{{/if}}
+
+{{if type =='link'}}
+<a href="${url}" style="padding: 20px 10px; width:100%;" target="_blank" class="btn btn-success"> ${title} </a>
+<br>
+<p>{{html description}}</p>
+{{/if}}
+
+{{if type =='chat'}}
+<h3>${title}</h3>
+<ul>
+{{each(prop, val) dialogue}}
+<li><strong>${val.label}</strong> ${phrase}</li>
+{{/each}}
+</ul>
+{{/if}}
+
+{{if type =='audio'}}
+{{html embed}}
+<br>
+<p>{{html caption}}</p>
+
+{{/if}}
+
+{{if type =='answer'}}
+{{if asking_url == null}}
+<div class="well"><strong>${asking_name}</strong> asked:<br>{{html question}}</div>	          >
+{{else}}
+<div class="well"><a href="${asking_url}">${asking_name}</a> asked:<br>{{html question}}</div>
+
+{{/if}}
+
+<p>{{html answer}}</p>
+{{/if}}
+
+{{if type =='video'}}
+<div id="video_preview_${id}" class="retro_video_preview" data-id="${id}" data-height="${thumbnail_height}" style="width: 100%; height: ${thumbnail_height}px;">
+<div class="retro_thumbnail" style="background-image: url('${thumbnail_url}');"></div>
+<div class="retro_fuzz"></div>
+<div class="safety_glass"></div>
+<div class="big_play_button"><span>Play</span></div>
+</div>
+
+<p>{{html caption}}</p>
+
+{{/if}}
+
+
+</div>
+
+<div class="post_tags">
+<div class="post_tags_inner">
+{{each(prop, val) tags}}
+<a href="blog.html?search=${val}">#${val}</a>
+{{/each}}
+</div>
+</div>
+
+</div>
+
+</script>
+<script type="text/javascript" src="/homepage/js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/homepage/js/jquery.tmplPlus.min.js"></script>
+<script type="text/javascript" src="/homepage/js/tumblr.js"></script>
+<!-- END TUMBLR -->
+
+<script>
+$(function(){
+	$('body').addClass('blog');
+})
+</script>

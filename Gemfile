@@ -40,3 +40,12 @@ gem 'spring',        group: :development
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise'
+
+# The best Rails 3 and Rails 4 forum engine. Ever.http://forem.herokuapp.com
+gem 'forem', :github => "radar/forem", :branch => "rails4"
+
+# Pagination library for Rails 3, Sinatra, Merb, DataMapper
+gem 'will_paginate'
+
+# This is imporved from rails-settings, added caching for all settings
+gem 'rails-settings-cached', '0.4.1'

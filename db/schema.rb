@@ -11,11 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304021957) do
+ActiveRecord::Schema.define(version: 20150304092222) do
+
+  create_table "app_categories", id: false, force: true do |t|
+    t.integer "application_id"
+    t.integer "category_id"
+  end
+
+  create_table "app_installeds", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.integer  "classroom_id",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "app_notifications", force: true do |t|
+    t.integer  "application_id"
+    t.text     "description"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "applications", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
+    t.text     "description"
+    t.integer  "design_for"
+    t.integer  "type"
+    t.string   "teacher_url"
+    t.string   "student_url"
+    t.string   "parent_url"
+    t.string   "help_url"
+    t.string   "tem_url"
+    t.string   "privacy_url"
+    t.boolean  "is_free",                               default: true
+    t.decimal  "price",        precision: 10, scale: 0, default: 0
+    t.string   "website"
+    t.string   "callback_url"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,6 +59,50 @@ ActiveRecord::Schema.define(version: 20150304021957) do
     t.string   "name"
     t.string   "domain"
     t.string   "access_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "paypal_notifications", force: true do |t|
+    t.string   "txn_id"
+    t.string   "txn_type"
+    t.text     "params"
+    t.string   "payer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                           null: false
+    t.text     "value",      limit: 2147483647
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+
+  create_table "user_notifications", force: true do |t|
+    t.integer  "paypal_notification_id"
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_paypal_logs", force: true do |t|
+    t.integer  "user_paypal_id"
+    t.decimal  "amount",         precision: 10, scale: 0
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_paypals", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "balance",      precision: 10, scale: 0
+    t.string   "email_paypal"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

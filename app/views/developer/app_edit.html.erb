@@ -1,0 +1,420 @@
+<div class="page-title">
+	<div class="container">
+		<h1>Apps</h1>
+		<ul class="breadcrumb">
+			<li><a href="<%= developer_index_url %>">Home</a> <span class="divider">/</span></li>
+			<li class=""><a href="<%= app_list_developer_index_url %>">Apps</a> <span class="divider">/</span></li>
+			<li class="active"><%= @application.name%></li>
+		</ul>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row-fluid app-list">
+		<div class="tabbable"> <!-- Only required for left/right tabs -->
+			<ul class="nav nav-tabs">
+				<li id="li_tab1" class="active"><a data-toggle="tab" href="#tab1">Detail</a></li>
+				<li id="li_tab2"><a data-toggle="tab" href="#tab2">Settings</a></li>
+				<!-- <li id="li_tab3"><a data-toggle="tab" href="#tab3">Keys &amp; Access Tokens</a></li>
+				<li id="li_tab4"><a data-toggle="tab" href="#tab4">Permission</a></li> -->
+			</ul>
+			<div class="tab-content">
+				<div id="tab1" class="tab-pane active">
+					<div class="app-details">
+						<div class="page-header">
+							<h2>Application Settings
+								<small>Your application's Consumer Key and Secret are used to <a href="https://dev.gotoclassroom.com/docs/auth">authenticate</a> requests to the Twitter Platform.</small>
+							</h2>
+						</div>
+
+						<table class="table table-bordered">
+							<tbody><tr>
+								<td>Access Level</td>
+								<td>Read-only</td>
+							</tr>
+							<tr>
+								<td>Consumer Key (API Key)</td>
+								<td>oLZjlfy5gReb0f4tMhGwQgddf</td>
+							</tr>
+							<tr>
+								<td>Callback URL</td>
+								<td>http://your-url/oauth-callback</td>
+							</tr>
+							<tr>
+								<td>Request token URL</td>
+								<td>http://api.gotoclassroom.com/req_token</td>
+							</tr>
+							<tr>
+								<td>Authorize URL</td>
+								<td>http://api.gotoclassroom.com/authorize</td>
+							</tr>
+							<tr>
+								<td>Access Tokem URL</td>
+								<td>http://api.gotoclassroom.com/access_token</td>
+							</tr>
+						</tbody></table>
+
+						<fieldset class="form-wrapper">
+							<legend><span class="fieldset-legend">Application Actions</span></legend>
+							<div class="fieldset-wrapper">
+								<a class="btn btn-danger btnDeleteApp" href="javascript:;" url="<%= app_delete_developer_index_url(:id => @application.id, :callback => 'detail')%>">Delete Application</a>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div id="tab2" class="tab-pane">
+					<%= form_tag app_update_developer_index_url, method: :post, class: 'form', id: 'frmAppUpdate', :multipart => true do %>
+					<fieldset>
+
+						<div class="control-group">
+							<label class="control-label">Application Icon</label>
+							<div class="controls">
+								<div class="fieldset-wrapper">
+									<img style="max-height:150px;" alt="<%= @application.name%>" src="<%= (@application.settings.icon ? @application.settings.icon[:url] : '/assets/developer/default-app-icon.png') %>">
+									<div class="form-item control-group">
+										<div class="controls">
+											<input type="file" class="form-file" size="60" name="application[image]" id="application_image">
+										</div>
+										<div class="help-block">Maximum size of 700k. JPG, GIF, PNG.</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label">Name*</label>
+							<div class="controls">
+								<input class="input-xlarge span12 required" id="application_name" name="application[name]" type="text" placeholder="application name" value="<%= @application.name%>">
+								<p class="help-block">Your application name. This is used to attribute the source of a tweet and in user-facing authorization screens. 32 characters max.</p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label">Description</label>
+							<div class="controls">
+								<input type="text" class="input-xlarge span12" placeholder="description" id="application_description" name="application[description]" value="<%= @application.description%>">
+								<p class="help-block">Your application description, which will be shown in user-facing authorization screens. Between 10 and 200 characters max</p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label">Website</label>
+							<div class="controls">
+								<input type="text" class="input-xlarge span12" placeholder="website" id="application_website" name="application[website]" value="<%= @application.website%>">
+								<p class="help-block">Your application's publicly accessible home page, where users can go to download, make use of, or find out more information about your application. This fully-qualified URL is used in the source attribution for tweets created by your application and will be shown in user-facing authorization screens.</p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label">Callback URL*</label>
+							<div class="controls">
+								<input type="text" class="input-xlarge span12 required url" placeholder="callback url" id="application_callback_url" name="application[callback_url]" value="<%= @application.callback_url%>">
+								<p class="help-block">Where should we return after successfully authenticating? OAuth 1.0a applications should explicitly specify their oauth_callback URL on the request token step, regardless of the value given here. To restrict your application from using callbacks, leave this field blank.</p>
+							</div>
+						</div>
+
+						<input type="hidden" name="application[id]" value="<%= @application.id%>">
+						<input type="hidden" name="callback" value="settings">
+						<div class="control-group">
+							<label class="control-label">&nbsp;</label>
+							<div class="controls">
+								<button class="btn btn-info">Update</button>
+								<button class="btn btn-default" type="reset">Cancel</button>
+							</div>
+						</div>
+					</fieldset>
+					<%end%>
+<!--
+					<%= form_tag app_update_slide_developer_index_url, method: :post, class: 'form', :multipart => true do %>
+					<fieldset class="form-wrapper"><legend><span class="fieldset-legend">Slide Show</span></legend>
+						<div class="control-group">
+							<div class="controls">
+								<div class="fieldset-wrapper">
+									<ul id="navcontainer">
+										<% @application.get_slide.each_with_index do |slide, index| %>
+										<% if slide['type'] == 'image' %>
+										<li>
+											<a title="" href="<%= slide['url']%>" class="fancybox-media">
+												<img alt="Image" style="width:150px; height:150px;" src="<%= slide['url']%>">
+											</a>
+											<!--<img style="height:150px;" alt="slide show" src='<%= slide['url']%>'>
+									<span class="icon-delete" style="cursor: pointer;"><i class="icon-remove"></i><span>-->
+							<!--			</li>
+										<%else%>
+										<li class="cshow">
+											<a href="<%= slide['url']%>" class="fancybox-media"><img alt="Youtube" style="width:150px; height:150px;" src="<%= slide['image']%>"></a>
+										</li>
+										<%end%>
+										<%end%>
+									</ul>
+
+									<div class="form-item control-group" style="width: 100%; display: block; float: left;">
+										<div class="controls">
+											<input type="file" class="form-file" size="60" name="application[slide]" id="application_slide">
+										</div>
+										<div class="help-block">Maximum size (250x250). JPG, GIF, PNG.</div>
+									</div>
+									<div class="form-item control-group">
+										<div class="controls">
+											<input type="text" class="input-xlarge span12 embedding_url" size="60" name="application[youtube]" placeholder="Youtube">
+
+											<div class="liveurl-loader" style="display: none;"></div>
+
+											<input type="hidden" class="youtube_image" name="application[youtube_image]" value="">
+										</div>
+										<div class="help-block">Embedding a video from YouTube</div>
+									</div>
+								</div>
+							</div>
+						</div> <br>
+						<input type="hidden" name="application[id]" value="<%= @application.id%>">
+						<input type="hidden" name="callback" value="settings">
+						<div class="fieldset-wrapper">
+							<button type="submit" class="btn btn-default">Upload</button>
+						</div>
+					</fieldset>
+					<%end%>
+ -->
+				</div>
+				<!-- <div id="tab3" class="tab-pane">
+					<div class="app-details">
+						<div class="page-header">
+							<h2>Application Settings
+								<small>Your application's Consumer Key and Secret are used to <a href="https://dev.gotoclassroom.com/docs/auth">authenticate</a> requests to the Twitter Platform.</small>
+							</h2>
+						</div>
+
+						<table class="table table-bordered">
+							<tbody><tr>
+								<td>Access Level</td>
+								<td>Read-only</td>
+							</tr>
+							<tr>
+								<td>Consumer Key (API Key)</td>
+								<td>oLZjlfy5gReb0f4tMhGwQgddf</td>
+							</tr>
+							<tr>
+								<td>Callback URL</td>
+								<td>http://your-url/oauth-callback</td>
+							</tr>
+							<tr>
+								<td>Owner</td>
+								<td>Brian Vu</td>
+							</tr>
+							<tr>
+								<td>Owner Id</td>
+								<td>12345667</td>
+							</tr>
+						</tbody></table>
+
+						<fieldset class="form-wrapper"><legend><span class="fieldset-legend">Application Actions</span></legend>
+							<div class="fieldset-wrapper">
+								<a class="btn btn-default" href="#generate">Regenerate Consumer Key &amp; Secret</a>
+							</div>
+						</fieldset>
+
+						<div class="page-header">
+							<h2>Your Access Token
+								<small>This access token can be used to make API requests on your own account's behalf. Do not share your access token secret with anyone.</small>
+							</h2>
+						</div>
+
+						<table class="table table-bordered">
+							<tbody><tr>
+								<td>Access Token</td>
+								<td>485546410-A33RNbm6Yox2iA7nvX4bqq6BwyOjufVTWZFuHpKZsdfds</td>
+							</tr>
+							<tr>
+								<td>Access Token Secret</td>
+								<td>Arnaqk1I74xTpQI5Kj7xZRm1VSHOD8SAGH8AkDSO8AY</td>
+							</tr>
+							<tr>
+								<td>Access Level</td>
+								<td>Read-only</td>
+							</tr>
+							<tr>
+								<td>Owner</td>
+								<td>Brian Vu</td>
+							</tr>
+							<tr>
+								<td>Owner Id</td>
+								<td>12345667</td>
+							</tr>
+						</tbody></table>
+
+						<fieldset class="form-wrapper"><legend><span class="fieldset-legend">Application Actions</span></legend>
+							<div class="fieldset-wrapper">
+								<a class="btn btn-default" href="#generate">Regenerate My Access Key &amp; Token Secret</a>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div id="tab4" class="tab-pane">
+					<div class="page-header">
+						<h2>Permission
+							<small>Changes to the application permission model will only reflect in access tokens obtained after the permission model change is saved. You will need to re-negotiate existing access tokens to alter the permission level associated with each of your application's users.</small>
+						</h2>
+
+						<div class="control-group">
+							<label class="control-label">What type of access does your application need?</label>
+						</div>
+						<div class="control-group">
+							<div class="controls radio">
+								<input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+								Read-only
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls radio">
+								<input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+								Read and Write
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls radio">
+								<input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+								Read, Write and Access direct messages
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label">&nbsp;</label>
+							<div class="controls">
+								<a class="btn btn-info" href="#">Update Settings</a>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+label.error{
+	color: red;
+}
+ul.error{
+	color: red; padding: 20px;
+}
+fieldset {
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
+legend {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: -moz-use-text-color -moz-use-text-color #e5e5e5;
+	border-image: none;
+	border-style: none none solid;
+	border-width: 0 0 1px;
+	color: #333333;
+	display: block;
+	font-size: 21px;
+	line-height: 40px;
+	margin-bottom: 20px;
+	padding: 0;
+	width: 100%;
+}
+
+ul#navcontainer
+{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+ul#navcontainer li {
+	/*	display: inline;*/
+	float: left;
+	height: 150px;
+	position: relative;
+	width: 150px;
+	border: 1px solid #ddd;
+	margin: 10px;
+}
+ul#navcontainer li iframe{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	top: -20px;
+}
+.icon-delete{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.liveurl-loader {
+	background: url("/assets/jQuery-LiveUrl/url-loader.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+	display: none;
+	height: 11px;
+	margin: 10px 0;
+	width: 16px;
+}
+</style>
+
+<script>
+$(function(){
+	$('#frmAppSetting').validate();
+
+	$('.btnDeleteApp').click(function(){
+		var url = $(this).attr('url');
+
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to delete this application!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#f35958",
+			confirmButtonText: "Yes, delete it!",
+			closeOnConfirm: false
+		},
+		function(){
+			window.location.href = url;
+		});
+	});
+
+	var params = '<%= params[:callback]%>';
+
+	if(params){
+		if (params == 'settings'){
+			$('ul.nav-tabs li').removeClass('active');
+			$('#li_tab2').addClass('active');
+
+			$('.tab-content .tab-pane').removeClass('active');
+			$('#tab2').addClass('active');
+		}
+	}
+
+});
+
+$(document).ready(function() {
+	$('.embedding_url').liveUrl({
+		loadStart : function(){
+			$('.liveurl-loader').show();
+		},
+		loadEnd : function(){
+			$('.liveurl-loader').hide();
+		},
+		addImage : function(image)
+		{
+			var jqImage = $(image);
+			jqImage.attr('alt', 'Preview');
+			if ((image.width / image.height) > 7 || (image.height / image.width) > 4 ) {
+				return false;
+			}
+			$('.youtube_image').val(jqImage.attr('src'));
+		}
+	});
+
+	$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : {}
+		}
+	});
+});
+</script>

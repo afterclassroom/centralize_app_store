@@ -1,0 +1,39 @@
+<div class="cont-header">
+
+	<!-- Menu -->
+	<div class="container">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<!-- Logo -->
+				<div class="brand_logo">
+					<a href="<%= main_app.developer_index_url %>"><img src="/assets/developer/LOGO1.png" alt="gotoClassroom" width="90%"></a>
+				</div>
+				<!-- Logo end -->
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="<%= 'active' if params[:controller] == 'developer' && params[:action] == 'index' %>"><a href="<%= main_app.developer_index_url %>" title=""><i class="icon-home"></i> Home</a></li>
+						<li class="<%= 'active' if params[:action] == 'blog' %>"><a href="<%= main_app.blog_developer_index_url%>" title=""><i class="icon-desktop"></i> Blog</a></li>
+					</ul>
+					<% if !current_user %>
+					<ul class="nav pull-right">
+						<li><a href="<%= main_app.login_endpoint_url(:redirect_uri => main_app.app_list_developer_index_url) %>" title=""><i class="icon-lock"></i> Sign in</a></li>
+					</ul>
+					<% else %>
+					<ul class="nav navbar-nav pull-right">
+						<li class="dropdown active">
+							<a title=""><i class="icon-user"></i> <%= truncate(current_user.email, :length => 30, :omission => "...") %> $<%= (current_user.user_paypal != nil ? current_user.user_paypal.balance : 0) %></a>
+							<ul class="dropdown-menu">
+								<li><a href="<%= main_app.app_list_developer_index_url %>" title=""><i class="icon-coffee"></i> Your Apps</a></li>
+								<!-- <li><a href="earnings.html" title=""><i class="icon-money"></i> Earnings</a></li>
+								<li><a href="statement.html" title=""><i class="icon-list-alt"></i> Statement</a></li> -->
+								<li><a href="<%= DASHBOARD_URL + "/#edit_profile" %>" title="" target="_blank"><i class="icon-edit-sign"></i> Edit Profile</a></li>
+							</ul>
+						</li>
+					</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Menu end -->
+</div>
