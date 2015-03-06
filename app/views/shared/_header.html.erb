@@ -12,6 +12,12 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="<%= 'active' if params[:controller] == 'developer' && params[:action] == 'index' %>"><a href="<%= main_app.developer_index_url %>" title=""><i class="icon-home"></i> Home</a></li>
+						<li class="dropdown <%= 'active' if params[:controller] == 'forem/forums' || params[:action] == 'document' || params[:action] == 'partners'  %>">
+							<a title=""><i class="icon-coffee"></i> Developement</a>
+							<ul class="dropdown-menu">
+								<li><a href="<%= main_app.document_developer_index_url %>" title="API Document">API Document</a></li>
+							</ul>
+						</li>
 						<li class="<%= 'active' if params[:action] == 'blog' %>"><a href="<%= main_app.blog_developer_index_url%>" title=""><i class="icon-desktop"></i> Blog</a></li>
 					</ul>
 					<% if !current_user %>
