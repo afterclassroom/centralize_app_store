@@ -49,3 +49,6 @@ gem 'will_paginate'
 
 # This is imporved from rails-settings, added caching for all settings
 gem 'rails-settings-cached', '0.4.1'
+
+#Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
+gem 'activeadmin', github: 'activeadmin'
