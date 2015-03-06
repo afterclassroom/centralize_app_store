@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304092222) do
+ActiveRecord::Schema.define(version: 20150306042156) do
 
   create_table "app_categories", id: false, force: true do |t|
     t.integer "application_id"
@@ -61,6 +61,12 @@ ActiveRecord::Schema.define(version: 20150304092222) do
     t.string   "access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "school_address"
+    t.string   "school_telephone"
+    t.string   "school_email"
+    t.string   "admin_email"
+    t.string   "admin_name"
+    t.string   "principle_name"
   end
 
   create_table "paypal_notifications", force: true do |t|
