@@ -14,5 +14,6 @@ ActiveAdmin.register Lm do
   #   permitted
   # end
 
+  permit_params :name, :domain, :school_address, :school_telephone, :school_email, :admin_email, :admin_name, :principle_name
 
 end
