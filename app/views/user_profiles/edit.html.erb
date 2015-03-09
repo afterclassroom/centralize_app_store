@@ -1,0 +1,35 @@
+<div class="page-title">
+	<div class="container">
+		<h2>Edit Profiles</h2>
+	</div>
+</div>
+
+<div class="container">
+	<%= form_for [current_user, @user_profile], :url => user_user_profile_path, :html => { :multipart => true } do |up| %>
+		<%= fields_for current_user do |u| %>
+			<div class="field">
+				<%= image_tag current_user.avatar(:thumb) %></br>
+				<%= u.file_field :avatar %>
+			</div>
+			<div class="field">
+				<%= u.label :email %>
+				<%= u.text_field :email %>
+			</div>
+		<% end %>
+
+		<div class="field">
+			<%= up.label :name %>
+			<%= up.text_field :name %>
+		</div>
+
+		<div class="field">
+			<%= up.label :address %>
+			<%= up.text_field :address %>
+		</div>
+
+		<div class="actions">
+	    	<%= up.submit "Update" %>
+	    	<%= link_to "back", :back %>
+	  	</div>
+	<% end %>
+</div>

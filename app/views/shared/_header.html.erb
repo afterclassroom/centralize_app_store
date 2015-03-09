@@ -28,12 +28,21 @@
 					<% else %>
 					<ul class="nav navbar-nav pull-right">
 						<li class="dropdown active">
-							<a title=""><i class="icon-user"></i> <%= truncate(current_user.email, :length => 30, :omission => "...") %> $<%= (current_user.user_paypal != nil ? current_user.user_paypal.balance : 0) %></a>
+							<a title="">
+								<%= image_tag current_user.avatar(:thumb), :size => '40' %> 
+								<% if current_user.user_profile.name.blank? %>
+									<%= truncate(current_user.email, :length => 30, :omission => "...") %>
+								<% else %>
+									<%= truncate(current_user.user_profile.name, :length => 30, :omission => "...") %>
+								<% end %> 
+								$<%= (current_user.user_paypal != nil ? current_user.user_paypal.balance : 0) %>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="<%= main_app.app_list_developer_index_url %>" title=""><i class="icon-coffee"></i> Your Apps</a></li>
 								<!-- <li><a href="earnings.html" title=""><i class="icon-money"></i> Earnings</a></li>
 								<li><a href="statement.html" title=""><i class="icon-list-alt"></i> Statement</a></li> -->
-								<li><a href="<%= main_app.edit_user_registration_path %>" title=""><i class="icon-edit-sign"></i> Edit Profile</a></li>
+								<li><a href="<%= main_app.edit_user_registration_path %>" title=""><i class="icon-edit-sign"></i> Change password</a></li>
+								<li><a href="<%= main_app.edit_user_user_profile_path(current_user, current_user.user_profile.id) %>" title=""><i class="icon-edit-sign"></i> Edit profile</a></li>
 								<li><%= link_to(raw('<i class="icon-off"></i> Logout'), main_app.destroy_user_session_path, method: :delete) %> </li>
 							</ul>
 						</li>

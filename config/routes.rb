@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   devise_for :users, :controllers => {:registrations => "registrations"}
-  as :user do
-    put 'users/edit' => 'registrations#update_profile', as: :user_update_profile
+
+  resources :users do
+    resources :user_profiles, :only => [:edit, :update]
   end
 
   resources :developer do
