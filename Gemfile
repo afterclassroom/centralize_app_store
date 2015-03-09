@@ -24,8 +24,18 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
+group :development do
+  gem 'spring'
+  gem 'thin'
+  gem 'capistrano', '~> 3.1.0'
+	gem 'capistrano-rails', '~> 1.1.0'
+	gem 'capistrano-bundler'
+	gem 'capistrano-rvm'
+	gem 'capistrano-chruby'
+  gem 'bullet'
+  gem 'puma'
+  gem 'unicorn'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -58,3 +68,9 @@ gem 'friendly_id', '~> 5.0.0'
 
 # Easy file attachment management for ActiveRecord
 gem 'paperclip'
+
+#Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
+gem 'activeadmin', github: 'activeadmin'
+
+# Loads environment variables from `.env`.
+gem 'dotenv-rails'
