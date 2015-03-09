@@ -62,3 +62,6 @@ gem 'rails-settings-cached', '0.4.1'
 
 #Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 gem 'activeadmin', github: 'activeadmin'
+
+# Loads environment variables from `.env`.
+gem 'dotenv-rails'
