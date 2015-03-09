@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  as :user do
+    put 'users/edit' => 'registrations#update_profile', as: :user_update_profile
+  end
 
   resources :developer do
     collection do
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
       post 'app_create', 'app_update', 'app_update_slide', 'app_update_publish', 'app_update_unpublish'
     end
   end
+
+   mount Forem::Engine, :at => "/forums"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,14 @@
+<%= simple_form_for [forem, @forum, @topic] do |f| %>
+	<div class="span4">
+		<%= f.input :subject, :input_html => { :class => "input-block-level" } %>
+	</div>
+	<div class="span9">
+		<%= f.simple_fields_for :posts do |post| %>
+			<%= render :partial => "forem/posts/form", :locals => { :f => post }%>
+		<% end %>
+	</div>
+	<div class="span12">
+		<br>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>
+<% end %>

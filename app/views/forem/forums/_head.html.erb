@@ -1,0 +1,44 @@
+<div class="container-full" id='forum'>
+  <div class="page-title">
+    <div class="container">
+      <h2><%= link_to t('forem.forum.forums'), forem.root_path %> &raquo; <%= link_to forem_emojify(forum.category), [forem, forum.category] %> &raquo; <%= link_to forem_emojify(forum.title), [forem, forum] %></h2>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <!-- <span id='description'><%= forem_format(forum.description) %></span> -->
+    <div id='forum_topic_links' class='btn-group'>
+      <% unless @topic.try(:new_record?) %>
+      <% if current_user %>
+        <% if can? :create_topic, @forum %>
+        <%= link_to t('forem.topic.links.new'), forem.new_forum_topic_path(forum), :class => "btn btn-primary", :id => "new-topics" %>
+        <% end %>
+      <% else %>
+        <%= link_to t('forem.topic.links.new'), "javascript:;", :class => "btn btn-primary", :id => "new-topic" %>
+      <% end %>
+      <% end %>
+      <% if @topic %>
+      <%= link_to t('forem.topic.links.back_to_topics'), forem.forum_path(forum), :class => "btn btn-primary" %>
+      <% end %>
+      <% if can? :moderate, @forum %>
+      <%= link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(forum), :class => "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  $('#new-topic').click(function() {
+    swal({
+      title: "Info",
+      text: "You are not sign in yet, please sign in to create topic.",
+      type: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#f35958",
+      confirmButtonText: "OK",
+      closeOnConfirm: false
+    },
+    function(){
+      window.location.href = "<%= main_app.new_user_session_path(:redirect_uri => forem.forum_path(forum)) %>"
+    });
+  })
+</script>
