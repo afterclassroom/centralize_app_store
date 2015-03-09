@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'GoToClassroom'
+set :application, 'CentralizeAppStore'
 set :repo_url, 'git@github.com:afterclassroom/centralize_app_store.git'
 
 # Default deploy_to directory is /var/www/my_app
@@ -48,9 +48,9 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart do
-    invoke 'delayed_job:restart'
-  end
+  # after :publishing, :restart do
+  #   invoke 'delayed_job:restart'
+  # end
 
 
   after :restart, :clear_cache do
