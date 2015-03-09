@@ -1,0 +1,66 @@
+<div class="page-title">
+  <div class="container">
+    <h2><%= t('forem.admin.group.index') %></h2>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="btn-group">
+    <%= link_to t('forem.admin.group.new'), forem.new_admin_group_path, :class => "btn btn-primary" %>
+    <%= link_to t('back_to_admin', :scope => "forem.admin"), forem.admin_root_path, :class => "btn btn-primary" %>
+  </div>
+  <table id='groups' class='index table table-striped' cellspacing='0'>
+    <thead>
+      <tr>
+        <th><%= t('name', :scope => 'forem.admin.groups') %></th>
+        <th><%= t('edit', :scope => 'forem.admin.groups') %></th>
+        <th><%= t('delete', :scope => 'forem.admin.groups') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+      <tr id="group_<%= group.id %>">
+        <td>
+          <%= link_to forem_emojify(group.name), forem.admin_group_path(group) %>
+        </td>
+        <td>
+          <%= link_to t('edit', :scope => 'forem.admin.groups'), forem.admin_group_path(group) %>
+        </td>
+        <td>
+          <%= link_to t('delete', :scope => 'forem.admin.groups'), "javascript:;", :method => :delete, :url => forem.admin_group_path(group), :class => "delete_group" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  $(".delete_group").click(function() {
+    var url = $(this).attr('url');
+    var group_id = url.substring(url.lastIndexOf('/') + 1);
+    swal({
+      title: "Are you sure?",
+      type: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#f35958",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false
+    },
+    function(){
+      $('.confirm').attr('data-loading-text', 'Loading...');
+      $('.confirm').button('loading');
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: {"_method":"delete"},
+        success: function(data){
+          $('.confirm').button('reset');
+          $("#group_" + group_id).fadeOut(100);
+          setTimeout(function() {
+            swal("Finished", "Delete successfull.", "success");
+          }, 300);
+        }
+      });
+    });
+  });
+</script>

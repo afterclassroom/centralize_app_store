@@ -1,0 +1,13 @@
+<div class="page-title">
+	<div class="container">
+		<h2><%= t("forem.admin.category.edit", :title => @category.name) %></h2>
+	</div>
+</div>
+<br>
+<div class="container">
+	<%= link_to t("forem.admin.category.index"), forem.admin_categories_path, :class => "btn" %>
+	<br>
+	<div class="admin_category_form">
+		<%= render "form" %>
+	</div>
+</div>

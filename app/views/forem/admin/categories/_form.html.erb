@@ -1,0 +1,9 @@
+<%= simple_form_for [forem, :admin, @category] do |f| %>
+	<div class="span4">
+		<%= f.input :name, :input_html => { :class => "input-block-level" } %>
+		<%= f.input :position, :input_html => { :class => "input-block-level" } %>
+	</div>
+	<div class="span12">
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>
+<% end %>

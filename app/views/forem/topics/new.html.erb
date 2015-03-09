@@ -1,0 +1,8 @@
+<%= render :partial => 'forem/forums/head', :locals => { :forum => @topic.forum } %>
+<br>
+<div class="container">
+	<h2><%= t("forem.topic.new") %></h2>
+	<div class="forem_form">
+		<%= render "form" %>
+	</div>
+</div>

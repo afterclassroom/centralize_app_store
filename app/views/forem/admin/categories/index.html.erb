@@ -1,0 +1,65 @@
+<div class="page-title">
+  <div class="container">
+    <h2><%= t("forem.admin.category.index") %></h2>
+  </div>
+</div>
+<br>
+<div class="container">
+<div class="btn-group">
+<%= link_to t("forem.admin.category.new_link"), forem.new_admin_category_path, :class => "btn btn-primary" %>
+<%= link_to t('forem.admin.forum.index'), forem.admin_forums_path, :class => "btn btn-primary" %>
+<%= link_to t('back_to_admin', :scope => "forem.admin"), forem.admin_root_path, :class => "btn btn-primary" %>
+</div><br><br>
+
+<table id='forums' class='forums table-striped table' cellspacing='0'>
+  <thead>
+    <tr>
+      <th><%= t('category', :scope => 'forem.admin.categories') %></th>
+      <th><%= t('edit', :scope => 'forem.admin.categories') %></th>
+      <th><%= t('delete', :scope => 'forem.admin.categories') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr class="forum <%= cycle("odd", "even") %>" id="category_<%= category.slug %>">
+        <td>
+          <%= forem_emojify(category.name) %>
+        </td>
+        <td><%= link_to t('edit', :scope => 'forem.admin.categories'), forem.edit_admin_category_path(category), :class => "btn btn-info" %></td>
+        <td><%= link_to t('delete', :scope => 'forem.admin.categories'), "javascript:;", :method => :delete, :url => forem.admin_category_path(category), :class => "btn btn-danger category_delete" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<script>
+  $(".category_delete").click(function() {
+      var url = $(this).attr('url');
+      var category_slug = url.substring(url.lastIndexOf('/') + 1);
+      swal({
+        title: "Are you sure?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#f35958",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        $('.confirm').attr('data-loading-text', 'Loading...');
+        $('.confirm').button('loading');
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: {"_method":"delete"},
+          success: function(data){
+            $('.confirm').button('reset');
+            $("#category_" + category_slug).fadeOut(100);
+            setTimeout(function() {
+              swal("Finished", "Delete successfull.", "success");
+            }, 300);
+          }
+        });
+      });
+    });
+</script>
+

@@ -1,0 +1,9 @@
+<div class="container">
+	<div class="span6" id="post_text">
+	<%= f.input :text, :input_html => { :class => "field col-md-1 input-block-level", :rows => 8 } %>
+	</div>
+
+	<% if params[:reply_to_id] %>
+	<%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
+	<% end %>
+</div>

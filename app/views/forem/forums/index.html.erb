@@ -1,0 +1,19 @@
+<div class="container-full" id='forums_container'>
+	<div class="page-title">
+		<div class="container">
+			<h1 id='forums_title'><%= t('.title') %></h1>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<% if forem_admin? %>
+			<%= link_to t("area", :scope => "forem.admin"), forem.admin_root_path, :class => "btn btn-primary" %>
+		<% end %>
+		<br><br>
+		<% if @categories.blank? %>
+			<p>No entry</p>
+		<% else %>
+			<%= render @categories %>
+		<% end %>
+	</div>
+</div>

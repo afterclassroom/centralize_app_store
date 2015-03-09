@@ -1,0 +1,130 @@
+<div class="page-title">
+  <div class="container">
+    <h2><%= t('forem.admin.group.members', :group => forem_emojify(@group.name)) %></h2>
+  </div>
+</div>
+<br>
+<div class="container">
+  <%= link_to t('back_to_groups', :scope => "forem.admin"), admin_groups_path, :class => "btn" %>
+  <br><br>
+  <div class="row">
+    <div class="add_new_member_form">
+      <h3><%= t('.add_a_new_member') %></h3>
+    </div>
+    <%= form_tag add_admin_group_members_url(@group), id: 'newMemberForm' do %>
+    <div class="span4">
+      <p>
+        <%= text_field_tag "user_email", nil, :class => "input-block-level required email" %>
+      </p>
+    </div>
+    <div class="span12">
+      <p class="col-md-1">
+        <%= submit_tag t(".add_member"), :class => "btn btn-primary" %>
+      </p>
+    </div>
+    <% end %>
+  </div>
+  <br><br>
+    <% if @group.members.any? %>
+      <h3><%= t('.current_members') %></h3>
+      <div class="row">
+        <ul id='members'>
+        <div class="member_table">
+          <table class="table table-striped" id="table_width">
+            <thead>
+              <tr>
+                <td>
+                  <div class="span3">
+                    <b>Name</b>
+                  </div>
+                  <div class="span4">
+                    <b>Email</b>
+                  </div>
+                  <div class="span2">
+                    <b>Action</b>
+                  </div>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @group.members.each do |member| %>
+                <tr id="member_<%= member.id %>">
+                <td>
+                  <div class="span3">
+                    <%= member.forem_name %>
+                  </div>
+                  <div class="span4">
+                    <%= member.forem_email %>
+                  </div>
+                  <div class="span2">
+                    <%= link_to t('forem.admin.groups.show.remove_member'), "javascript:;", method: :delete, url: admin_group_member_url(@group, member), class: "delete_member" %>
+                  </div>
+                </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        </ul>
+      </div>
+    <% end %>
+</div>
+
+  <script>
+    // $("#user_id").select2({
+    //   containerCssClass: "col-md-5",
+    //   ajax: {
+    //     url: "<%= forem.admin_user_autocomplete_url %>",
+    //     data: function(term, page) {
+    //       return { "term": term }
+    //     },
+    //     results: function(data, page) {
+    //       return { results: data };
+    //     }
+    //   },
+    //   formatResult: function(result) {
+    //     return result.identifier;
+    //   },
+    //   formatSelection: function(result) {
+    //     return result.identifier;
+    //   }
+    // });
+    $("#newMemberForm").validate();
+
+    var error_message = '<%= alert %>';
+    if (error_message != '') {
+      setTimeout(function() {
+        swal("Error", error_message, "error");
+      }, 100);
+    }
+
+    $(".delete_member").click(function() {
+      var url = $(this).attr('url');
+      var group_id = '<%= @group.id %>';
+      var member_id = url.substring(url.lastIndexOf('/') + 1);
+      swal({
+        title: "Are you sure?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#f35958",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        $('.confirm').attr('data-loading-text', 'Loading...');
+        $('.confirm').button('loading');
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: {"_method":"delete"},
+          success: function(data){
+            $('.confirm').button('reset');
+            $("#member_" + member_id).fadeOut(100);
+            setTimeout(function() {
+              swal("Finished", "Delete successfull.", "success");
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>

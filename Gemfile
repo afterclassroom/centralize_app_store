@@ -57,8 +57,17 @@ gem 'forem', :github => "radar/forem", :branch => "rails4"
 # Pagination library for Rails 3, Sinatra, Merb, DataMapper
 gem 'will_paginate'
 
+#Integrates the Twitter Bootstrap pagination component with will_paginate
+gem 'will_paginate-bootstrap'
+
 # This is imporved from rails-settings, added caching for all settings
 gem 'rails-settings-cached', '0.4.1'
+
+# Allows you to create pretty URL’s and work with human-friendly strings as if they were numeric ids for ActiveRecord models.
+gem 'friendly_id', '~> 5.0.0'
+
+# Easy file attachment management for ActiveRecord
+gem 'paperclip'
 
 #Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 gem 'activeadmin', github: 'activeadmin'
