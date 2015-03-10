@@ -24,6 +24,20 @@ Rails.application.routes.draw do
 
   mount Forem::Engine, :at => "/forums"
 
+  resources :subscribe do
+    collection do
+      post :create_subscribe
+    end
+  end
+
+  resources :contacts do
+    collection do
+      post :create_contact
+    end
+  end
+
+  get "/delayed_job" => DelayedJobWeb, :anchor => false
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

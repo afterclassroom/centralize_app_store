@@ -74,3 +74,9 @@ gem 'activeadmin', github: 'activeadmin'
 
 # Loads environment variables from `.env`.
 gem 'dotenv-rails'
+
+# ActiveRecord backend integration for DelayedJob 3.0+
+gem 'delayed_job_active_record'
+
+# Resque like web interface for delayed job
+gem 'delayed_job_web'

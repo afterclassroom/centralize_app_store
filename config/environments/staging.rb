@@ -5,7 +5,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
-  # your application in memory, allowing both threaded web servers
+  # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
@@ -32,7 +32,8 @@ Rails.application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
-  # `config.assets.precompile` has moved to config/initializers/assets.rb
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -41,8 +42,8 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Set to :debug to see everything in the log.
-  config.log_level = :info
+  # Set to :debug to see everything in the log
+    config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -62,10 +63,13 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :ses
+  config.action_mailer.default_url_options = { :host => 'developer.afterclassroom.com' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+  # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
@@ -77,6 +81,43 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+  # ExceptionNotifier
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ERROR: PeSome] ",
+    :sender_address =>'"Notifier" <support@pesome.com>',
+    :exception_recipients => ['dungtqa@gmail.com', 'ngothiendat@gmail.com', 'quachqhuy@yahoo.com']
+  }
+
+  # Paperclip
+  BUCKET_IMG = "gotoclassroom_staging_imgs"
+  BUCKET_VIDEO = "gotoclassroom_staging_videos"
+  BUCKET_FILE = "gotoclassroom_staging_files"
+  PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
+    :use_ssl => false,
+    :s3_protocol => "http",
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
+    :path => ":attachment/:id/:basename_:style.:extension"
+  }
+
+  # App
+  LOGIN_URL = "http://developer.afterclassroom.com/oauth/login_endpoint"
+  ACCESS_TOKEN_URL = "http://developer.afterclassroom.com/oauth/token"
+  CLIENT_ID = "a897519f9045b63159ec5e84172c3a16"
+  CLIENT_SECRET = "2cbd55985513bd0df3c4091ecd92ece7"
+
+  PATH_TEMPLATE = "/var/www/themes/default"
+  PATH_USER = "/var/www/"
+  DOMAIN = "developer.afterclassroom.com"
+  DASHBOARD_URL = "http://dev.afterclassroom.com"
+  CLASS_URL = 'afterclassroom.com/#/classdetail-activities/'
+
+  # Omniauth
+  TWITTER_KEY = "5nL4tsjmLXzJYJ9Eb75R2N9Tj"
+  TWITTER_SECRET = "fOo2EYpQh8BiQ3Cx1xy4bG6wcmwE9p2DioqpjSgkuwM9mAkDBR"
+
+  FACEBOOK_KEY = "404702639678360"
+  FACEBOOK_SECRET = "a541727da7a1a47f697929b65b9451dd"
+
+  EMAIL_NOTIFICATION = 'huynhvietminh012@gmail.com'
 end
