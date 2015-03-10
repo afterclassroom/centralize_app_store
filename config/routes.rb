@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  resources :users do
-    resources :user_profiles, :only => [:edit, :update]
-  end
+  get '/users/:user_id/user_profiles/:id/edit' => 'user_profiles#edit', as: :edit_user_user_profile
+  match '/users/:user_id/user_profiles/:id' => 'user_profiles#update', as: :user_user_profile, via: [:patch, :put]
+
+  # resources :users do
+  #   resources :user_profiles, :only => [:edit, :update]
+  # end
 
   resources :developer do
     collection do

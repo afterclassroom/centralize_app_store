@@ -1,35 +1,89 @@
+<script src="/assets/jquery.validate.js"></script>
+<link rel="stylesheet" href="/assets/jquery.validate.bootstrap.popover.css" />
+<script src='/assets/jquery.validate.bootstrap.popover.js'></script>
+
+<style>
+	#user-profile-form {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+
+	#image-style {
+		padding-left: 80px;
+		height: 280px;
+	}
+
+	#avatar {
+		cursor: pointer;
+	}
+</style>
+
 <div class="page-title">
 	<div class="container">
 		<h2>Edit Profiles</h2>
 	</div>
 </div>
 
-<div class="container">
-	<%= form_for [current_user, @user_profile], :url => user_user_profile_path, :html => { :multipart => true } do |up| %>
+<div class="container" id="user-profile-form">
+	<%= form_for [current_user, @user_profile], :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
 		<%= fields_for current_user do |u| %>
-			<div class="field">
-				<%= image_tag current_user.avatar(:thumb) %></br>
-				<%= u.file_field :avatar %>
+			<div class="span4" id="image-style">
+				<%= u.label :avatar %>
+				<%= u.file_field :avatar, :hidden => true %>
+				<%= image_tag current_user.avatar, :size => "200", :id => "avatar" %>
 			</div>
-			<div class="field">
+			<div class="span4">
 				<%= u.label :email %>
-				<%= u.text_field :email %>
+				<%= u.email_field :email, :class => "input-block-level required" %>
 			</div>
 		<% end %>
 
-		<div class="field">
+		<div class="span4">
 			<%= up.label :name %>
-			<%= up.text_field :name %>
+			<%= up.text_field :name, :class => "input-block-level" %>
 		</div>
 
-		<div class="field">
+		<div class="span4">
 			<%= up.label :address %>
-			<%= up.text_field :address %>
+			<%= up.text_field :address, :class => "input-block-level" %>
 		</div>
 
-		<div class="actions">
-	    	<%= up.submit "Update" %>
-	    	<%= link_to "back", :back %>
+		<div class="span4">
+	    	<button type="button" data-loading-text="Loading..." class="btn btn-primary" id="update_profile">Update</button>
+	    	<%= link_to "Cancel", "/developer", :class => "btn btn-default" %>
 	  	</div>
 	<% end %>
 </div>
+
+<script>
+	$( document ).ready(function() {
+
+		var old_scr = document.getElementById("avatar").src;
+
+		$('#avatar').click(function() {
+			$('#user_avatar').click();
+		});
+
+		$('#user_avatar').change(function() {
+			if (this.value != '') {
+				var oFReader = new FileReader();
+				oFReader.readAsDataURL(this.files[0]);
+				oFReader.onload = function (oFREvent) {
+					document.getElementById("avatar").src = oFREvent.target.result;
+				};
+			} else {
+				document.getElementById("avatar").src = old_scr;
+			}
+		});
+
+		$('#update_profile').click(function(){
+			var edit_profile_form = $('#edit_profile_form');
+			edit_profile_form.validate_popover({popoverPosition: 'top'});
+			edit_profile_form.validate();
+			if(edit_profile_form.valid()){
+				$(this).html('loading...');
+				edit_profile_form.submit();
+			}
+		});
+	});
+</script>

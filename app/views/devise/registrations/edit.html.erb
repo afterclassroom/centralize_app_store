@@ -1,34 +1,54 @@
-<h2>Change password</h2>
+<script src="/assets/jquery.validate.js"></script>
+<link rel="stylesheet" href="/assets/jquery.validate.bootstrap.popover.css" />
+<script src='/assets/jquery.validate.bootstrap.popover.js'></script>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |fpass| %>
-  <%= devise_error_messages! %>
+<style>
+  #password-change-form {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+</style>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<div class="page-title">
+  <div class="container">
+    <h2>Change password</h2>
+  </div>
+</div>
+
+<div class="container" id="password-change-form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |fpass| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= fpass.label "new password (leave blank if you don't want to change it)" %>
+      <%= fpass.password_field :password, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+    </div>
+
+    <div class="field">
+      <%= fpass.label :password_confirmation %>
+      <%= fpass.password_field :password_confirmation, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+    </div>
+
+    <div class="field">
+      <%= fpass.label "current password (we need your current password to confirm your changes)" %>
+      <%= fpass.password_field :current_password, autocomplete: "off", :class => "input-block-level required" %>
+    </div>
+
+    <div class="actions">
+      <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="change_password">Update</button>
+      <%= link_to "Back", :back %>
+    </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= fpass.label "new password" %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= fpass.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= fpass.label :password_confirmation %><br />
-    <%= fpass.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= fpass.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= fpass.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= fpass.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<script>
+  $('#change_password').click(function(){
+    var edit_user = $('#edit_user');
+    edit_user.validate_popover({popoverPosition: 'top'});
+    edit_user.validate();
+    if(edit_user.valid()){
+      $(this).html('loading...');
+      edit_user.submit();
+    }
+  });
+</script>

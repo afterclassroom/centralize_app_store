@@ -7,7 +7,7 @@ class UserProfilesController < ApplicationController
 
 	def update
 		@user_profile = current_user.user_profile
-		if @user_profile.update_attributes(user_profile_params) && current_user.update_attributes(user_email_params)
+		if @user_profile.update_attributes(user_profile_params) && current_user.update_attributes(user_params)
 			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id)
 		else
 			
@@ -20,7 +20,7 @@ class UserProfilesController < ApplicationController
     	params.require(:user_profile).permit(:name, :address)
   	end
 
-  	def user_email_params
+  	def user_params
   		params.require(:user).permit(:email, :avatar)
   	end
 end
