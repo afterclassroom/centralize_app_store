@@ -28,3 +28,4 @@
 //= require twitter.feed.footer
 //= require forem
 //= require jQuery-LiveUrl/jquery.liveurl
+//= require dev_scripts

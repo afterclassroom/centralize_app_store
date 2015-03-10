@@ -27,6 +27,28 @@ Rails.application.routes.draw do
 
   mount Forem::Engine, :at => "/forums"
 
+  resources :subscribe do
+    collection do
+      post :create_subscribe
+    end
+  end
+
+  resources :contacts do
+    collection do
+      post :create_contact
+    end
+  end
+
+  get "/delayed_job" => DelayedJobWeb, :anchor => false
+
+  get 'api/classrooms/:id' => 'api#classrooms'
+  get 'api/classrooms/:id/students' => 'api#classrooms_students'
+  get 'api/classrooms/:id/parents' => 'api#classrooms_parents'
+  get 'api/users/me' => 'api#users'
+  get 'api/users/search' => 'api#users_search'
+  get 'api/users/my_classrooms' => 'api#users_my_classrooms'
+  get 'api/users/my_yearbooks' => 'api#users_my_yearbooks'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
