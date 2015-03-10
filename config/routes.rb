@@ -16,7 +16,15 @@ Rails.application.routes.draw do
     end
   end
 
+<<<<<<< HEAD
+  resources :lms do
+    collection do
+      post 'install'
+    end
+  end
+=======
    mount Forem::Engine, :at => "/forums"
+>>>>>>> 185573ad6d7514c5cd243ceedf2ae4d72732ecb3
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
