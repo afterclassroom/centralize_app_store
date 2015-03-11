@@ -16,39 +16,50 @@
 </div>
 
 <div class="container" id="password-change-form">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |fpass| %>
-    <%= devise_error_messages! %>
+  <div class='span6'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |fpass| %>
 
-    <div class="field">
-      <%= fpass.label "new password (leave blank if you don't want to change it)" %>
-      <%= fpass.password_field :password, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
-    </div>
+      <div class="field">
+        <%= fpass.label "new password (leave blank if you don't want to change it)" %>
+        <%= fpass.password_field :password, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+      </div>
 
-    <div class="field">
-      <%= fpass.label :password_confirmation %>
-      <%= fpass.password_field :password_confirmation, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
-    </div>
+      <div class="field">
+        <%= fpass.label :password_confirmation %>
+        <%= fpass.password_field :password_confirmation, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+      </div>
 
-    <div class="field">
-      <%= fpass.label "current password (we need your current password to confirm your changes)" %>
-      <%= fpass.password_field :current_password, autocomplete: "off", :class => "input-block-level required" %>
-    </div>
+      <div class="field">
+        <%= fpass.label "current password (we need your current password to confirm your changes)" %>
+        <%= fpass.password_field :current_password, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+      </div>
 
-    <div class="actions">
-      <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="change_password">Update</button>
-      <%= link_to "Back", :back %>
-    </div>
-  <% end %>
+      <div class="actions">
+        <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="change_password">Update</button>
+        <%= link_to "Back", :back, :class => "btn btn-primarys" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <script>
-  $('#change_password').click(function(){
-    var edit_user = $('#edit_user');
-    edit_user.validate_popover({popoverPosition: 'top'});
-    edit_user.validate();
-    if(edit_user.valid()){
-      $(this).html('loading...');
-      edit_user.submit();
+  $(document).ready(function() {
+
+    var msg = '<%= alert %>';
+    if (msg != '') {
+      setTimeout(function () {
+        swal("", msg, "error");
+      }, 200);
     }
+
+    $('#change_password').click(function(){
+      var edit_user = $('#edit_user');
+      edit_user.validate_popover({popoverPosition: 'top'});
+      edit_user.validate();
+      if(edit_user.valid()){
+        $(this).html('loading...');
+        edit_user.submit();
+      }
+    });
   });
 </script>
