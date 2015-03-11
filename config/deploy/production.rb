@@ -39,4 +39,4 @@ server 'gotoclassroom.com',
 # setting per server overrides global ssh_options
 
 # Default branch is :master
-ask :branch, proc{`git tag`.split("\n").last}
+# ask :branch, proc{`git tag`.split("\n").last}
