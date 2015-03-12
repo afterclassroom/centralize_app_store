@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.validate
 //= require turbolinks
 //= require bootstrap.min
 //= require modernizr.custom
@@ -21,3 +22,5 @@
 //= require retina
 //= require waypoints.min
 //= require scripts
+//= require jquery.accordion
+//= require jquery.easing.1.3

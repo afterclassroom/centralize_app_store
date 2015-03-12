@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :contacts do
     collection do
-      post :create_contact
+      post :create_contact, :create_source_code
     end
   end
 

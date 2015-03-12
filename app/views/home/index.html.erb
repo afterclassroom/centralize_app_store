@@ -1,150 +1,250 @@
 <section class="video" id="features">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<h1><a href="https://www.youtube.com/watch?v=mYleW52Jseg" class="youtube-media"><i class="fa fa-play-circle-o"></i> Watch the Video</a></h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1><a href="https://www.youtube.com/watch?v=mYleW52Jseg" class="youtube-media"><i class="fa fa-play-circle-o"></i> Watch the Video</a></h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="showcase">
+	<div class="showcase-wrap">
+		<div class="texture-overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="device wp3">
+						<div class="device-content">
+							<div class="showcase-slider">
+								<ul class="slides" id="showcaseSlider">
+									<li>
+										<img src="/assets/home/screen1.jpg" alt="Device Content Image">
+									</li>
+									<li>
+										<img src="/assets/home/screen2.jpg" alt="Device Content Image">
+									</li>
+									<li>
+										<img src="/assets/home/screen3.jpg" alt="Device Content Image">
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+				<div class="col-md-6">
+					<h2>School/Institution</h2>
+					<p>A clean LMS built from the ground up for your educational institution.</p>
+					<ul class="features-list">
+						<li>Fully functional Learning Management System source code and ready for Server deployment.</li>
+						<li>Simple Server deployment instructions with step by step on how to deploy the LMS on your Server, and get it up and running within 2 days.</li>
+						<li>Integrates with existing systems and hosting domain.</li>
+						<li>Tailored for the cloud platform Amazon EC2, Google Cloud, and Microsoft Azure.</li>
+						<li>Includes automatic feature updates and full technical support.</li>
+					</ul>
+					<br>
+					<h2>Classroom</h2>
+					<p>Fully featured online classrooms allow educators and students to work better</p>
+					<ul class="features-list">
+						<li>Individual educators can create and manage an unlimited number of classrooms.</li>
+						<li>Professional tools showcases education, experience, and publications in an online portfolio.</li>
+						<li>Students can manage their coursework, engage with their classes, and build opportunities.</li>
+						<li>Parent registration allows parents to connect and track their children learning progress.</li>
+						<li>Use a wide variety of seamlessly integrated apps to customize both the teaching and learning experiences.</li>
+					</ul>
 
-		<section class="showcase">
-			<div class="showcase-wrap">
-				<div class="texture-overlay"></div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="device wp3">
-								<div class="device-content">
-									<div class="showcase-slider">
-										<ul class="slides" id="showcaseSlider">
-											<li>
-												<img src="/assets/home/screen1.jpg" alt="Device Content Image">
-											</li>
-											<li>
-												<img src="/assets/home/screen2.jpg" alt="Device Content Image">
-											</li>
-											<li>
-												<img src="/assets/home/screen3.jpg" alt="Device Content Image">
-											</li>
-										</ul>
-									</div>
+					<a href="#" class="use-btn animated fadeInUp" data-toggle="modal" data-target="#myModal">Get the source code <i class="fa fa-download"></i></a>
+
+					<a href="http://gotoclassroom.org" class="download-btn">Try Now!<i class="fa fa-cloud"></i></a>
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Get Free LMS Now</h4>
+									<h5 class="modal-title" id="myModalLabel">(It takes about 2 days for us to verify your school/institution before we send you the LMS source code and Server deployment instructions)</h5>
+								</div>
+								<div class="modal-body">
+									<form id="get-lms-form" accept-charset="utf-8" method="post">
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">School Name*:</label>
+											<input type="text" class="form-control required" name="school_name">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">School Address*:</label>
+											<input type="text" class="form-control required" name="school_address">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">School Tel*:</label>
+											<input type="text" class="form-control required" name="school_tel">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">School Email*:</label>
+											<input type="text" class="form-control required email" name="school_email">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">School Principle / President Name*:</label>
+											<input type="text" class="form-control required" name="school_principle">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">Your Role:</label>
+											<select name="your_role" class="form-control">
+												<option value="School IT Admin">School IT Admin</option>
+												<option value="Administration Staff">Administration Staff</option>
+												<option value="School District Admin">School District Admin</option>
+												<option value="Others">Others</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="control-label">Message:</label>
+											<textarea class="form-control" name="message_text" rows="5"></textarea>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button id="btn-get-lms" type="button" class="btn btn-primary">Submit</button>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<h2>School/Institution</h2>
-								<p>A clean LMS built from the ground up for your educational institution.</p>
-							<ul class="features-list">
-								<li>Fully functional Learning Management System source code and ready for Server deployment.</li>
-								<li>Simple Server deployment instructions with step by step on how to deploy the LMS on your Server, and get it up and running within 2 days.</li>
-								<li>Integrates with existing systems and hosting domain.</li>
-								<li>Tailored for the cloud platform Amazon EC2, Google Cloud, and Microsoft Azure.</li>
-								<li>Includes automatic feature updates and full technical support.</li>
-							</ul>
-						<br>
-							<h2>Classroom</h2>
-								<p>Fully featured online classrooms allow educators and students to work better</p>
-							<ul class="features-list">
-								<li>Individual educators can create and manage an unlimited number of classrooms.</li>
-								<li>Professional tools showcases education, experience, and publications in an online portfolio.</li>
-								<li>Students can manage their coursework, engage with their classes, and build opportunities.</li>
-								<li>Parent registration allows parents to connect and track their children learning progress.</li>
-								<li>Use a wide variety of seamlessly integrated apps to customize both the teaching and learning experiences.</li>
-							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-							<a href="#" class="use-btn animated fadeInUp" data-toggle="modal" data-target="#myModal">Get the source code <i class="fa fa-download"></i></a>
+<section class="screenshots-intro">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Developers</h1>
+				<!--<h2>Their Problems, Your Answers</h2> -->
+				<p>Join the gotoClassroom development community and help evolve the education environment by using our simple Application Program Interface (API) to design your applications and fast track your creativity.</p>
+				<ul class="features-list">
+					<li>Develop exciting applications for a wide audience of teachers, students, and parents.</li>
+					<li>Seamlessly integrate your application into Learning Management System.</li>
+					<li>Utilize our open API to individualize your applications to each user’s specific needs</li>
+					<li>Full developer support provided, with easy application approval, and short received payment periods</li>
+				</ul>
+				<p><a href="http://gotoclassroom.org/developer" class="arrow-btn">Access the API & Documentation <i class="fa fa-long-arrow-right"></i></a></p>
+			</div>
+		</div>
+	</div>
+</section>
 
-							<a href="#" class="download-btn">Try Now!<i class="fa fa-cloud"></i></a>
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title" id="myModalLabel">Get Free LMS Now</h4>
-							        <h5 class="modal-title" id="myModalLabel">(It takes about 2 days for us to verify your school/institution before we send you the LMS source code and Server deployment instructions)</h5>
-							      </div>
-							      <div class="modal-body">
-							      	<form>
-							      		<div class="form-group">
-							      		<label for="recipient-name" class="control-label">School Name*:</label>
-							      			<input type="text" class="form-control" id="recipient-name">
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">School Address*:</label>
-							      			<input type="text" class="form-control" id="recipient-name">
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">School Tel*:</label>
-							      			<input type="text" class="form-control" id="recipient-name">
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">School Email*:</label>
-							      			<input type="text" class="form-control" id="recipient-name">
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">School Principle / President Name*:</label>
-							      			<input type="text" class="form-control" id="recipient-name">
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">Your Role:</label>
-							      			<select name="" class="form-control">
-							      				<option value="">School IT Admin</option>
-							      				<option value="">Administration Staff</option>
-							      				<option value="">School District Admin</option>
-							      				<option value="">Others</option>
-							      			</select>
-							      		</div>
-							      		<div class="form-group">
-							      			<label for="message-text" class="control-label">Message:</label>
-							      			<textarea class="form-control" id="message-text" rows="5"></textarea>
-							      		</div>
-							      	</form>
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-primary">Submit</button>
-							      </div>
-							    </div>
-							  </div>
+<section id="faq" class="faq">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+
+				<h1><a data-target="#faqContent" data-toggle="modal" href="javascript:;;"><i class="fa fa-question-circle"></i> FAQs</a></h1>
+
+				<div aria-hidden="true" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1" class="modal fade" id="faqContent" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h3>FAQs</h3>
 							</div>
+
+							<div class="modal-body">
+								<div class="st-accordion" id="st-accordion">
+									<ul>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">What is gotoClassroom?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>gotoClassroom is a Central APP Store to distribute and manage third party educational tools for the Learning Management System. gotoClassroom has a diverse team of 11 headquarted in Toronto, Canada and has been developing EdTech software for over 8 years.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">How does gotoClassroom work?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>gotoClassroom develops and leases its LMS to any educational institutions for free of charge. The LMS is clean and built from the ground up for the seamless third party educational tools integration purpose, and it ready for teacher to start manage his/her class, as well as it ready for student to manage their coursework.</p>
+
+												<p>You can experience LMS live at http://trynow.gotoclassroom.com, from the link provided you can either register and experience it or check the example it provides for different user roles.</p>
+											</div>
+										</li>
+										<li class="st-open" style="height: 215px;">
+											<a href="javascript:;;">The LMS is free? Really?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: block;">
+												<p>Yes. gotoClassroom leases its LMS to any educational institutions for free of charge as long as the organizations that has over 500 students and teachers combined. Our primary business is not on the LMS but rather we generate revenue from distributing and managing third party educational tools for the LMS. Also, the company is operating with support from our investment partners. This allows us to grow our customer base quickly and focus on developing a central APP Store for the Learning Management System.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">Where do I sign up as developer?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>gotoClassroom allows any type of user to contribute their education solutions to the gotoClassroom's App Store, thus, there is no specific sign-up as developer. For example, you sign up either with Teacher, Student or Parents role and still can deploy your application on the gotoClassroom's APP Store.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">How can I deploy my application on to the gotoClassroom's App Store?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>All you have to do is log in and select Create New App from the App Store. From there, we have listed everything you need to deploy your application. You can login from http://www.gotoclassroom.com/ developer</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">How long does it take for gotoClassroom to review and approve a new App?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>It is dependent on how many applications we still have in our backlog, as well as the sophistication level of your application. You can check your application submission status with our application reviewer at app@gotoclassroom.com.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">An App I want to install states FREE, is it really free?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>Yes, it is free. However, there some applications that are free with basic features and require users to pay for its premium features. Before you install an App, please make sure check the App details first and don't forget to read user reviews for a better experience.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">What is the method of payment if I want to install an App?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>The payment method is Paypal, which takes major Credit Cards, such as Visa, Master Card etc.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">Is it possible to recieve a refund if I don't like an App?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>Once you install an App, you have 48 hours to decide whether an App provides what you need. We will refund you 92% of the amount that you paid, and 8% is kept for the transaction fees.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">What is the payment period for developers?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>gotoClassroom holds your payment for 72 hours after the purchase of your App and the payment periods are on the 15th and 30th of the month. You can check your earnings in your developer profile.</p>
+											</div>
+										</li>
+										<li class="" style="height: 40px;">
+											<a href="javascript:;;">Is it possible to take down my App?<span class="st-arrow">Open or Close</span></a>
+											<div class="st-content" style="display: none;">
+												<p>Certaintly. All you have to do is go to your developer profile and, from Your Apps section, select an App that you want to delete. You will receive an App delete notification once it has been successfully deleted.</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="modal-footer">
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
+</section>
 
-		<section class="screenshots-intro">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1>Developers</h1>
-						<!--<h2>Their Problems, Your Answers</h2> -->
-						<p>Join the gotoClassroom development community and help evolve the education environment by using our simple Application Program Interface (API) to design your applications and fast track your creativity.</p>
-						<ul class="features-list">
-							<li>Develop exciting applications for a wide audience of teachers, students, and parents.</li>
-							<li>Seamlessly integrate your application into Learning Management System.</li>
-							<li>Utilize our open API to individualize your applications to each user’s specific needs</li>
-							<li>Full developer support provided, with easy application approval, and short received payment periods</li>
-						</ul>
-						<p><a href="#screenshots" class="arrow-btn">Access the API & Documentation <i class="fa fa-long-arrow-right"></i></a></p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="download" id="download">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center wp4">
+<section class="download" id="download">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center wp4">
 						<!-- <h1>Seen Enough?</h1>
 						<a href="#" class="download-btn">Get the source code! <i class="fa fa-download"></i></a> -->
 						<h1>Register your Email below for our Newsletter!</h1>
-						<form class="form-inline">
+						<form id="subscribe-form" class="form-inline" accept-charset="utf-8" method="post">
 							<div class="form-group">
-								<input type="text" class="form-control input-lg" id="exampleInputName2" placeholder="Your Email">
+								<input type="text" class="form-control input-lg" name="txtEmail" id="txtEmail" placeholder="Your Email">
 							</div>
-							<button type="submit" class="btn btn-info btn-lg">Subscribe</button>
+							<button id="btn-subscribe" type="button" class="btn btn-info btn-lg">Subscribe</button>
 						</form>
 					</div>
 				</div>
@@ -308,15 +408,15 @@
 				</div>
 			</div>
 		</section>
--->
+	-->
 
 
-		<section class="features-intro" id="about">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-6 nopadding features-intro-img">
-						<div class="features-bg">
-							<div class="texture-overlay"></div>
+	<section class="features-intro" id="about">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 nopadding features-intro-img">
+					<div class="features-bg">
+						<div class="texture-overlay"></div>
 							<!-- <div class="features-img wp1">
 								<img src="img/html5-logo.png" alt="HTML5 Logo">
 							</div> -->
@@ -324,24 +424,38 @@
 					</div>
 					<div class="col-md-6 nopadding">
 						<div class="features-slider">
-								<ul class="slides" id="featuresSlider">
-									<li>
-										<h1>Why free?</h1>
-										<p>
-											We made our LMS available to make the platform accessible to schools/institutions across the World as this lowers the barrier of bringing useful technology into the hands of the students.
-											This also invites schools/institutions to experience our platform free of obligation and represents a new economical alternative to existing LMS platforms.
+							<ul class="slides" id="featuresSlider">
+								<li>
+									<h1>Why free?</h1>
+									<p>
+										We made our LMS available to make the platform accessible to schools/institutions across the World as this lowers the barrier of bringing useful technology into the hands of the students.
+										This also invites schools/institutions to experience our platform free of obligation and represents a new economical alternative to existing LMS platforms.
 
-											<!-- As students, we have the opportunity to find new ways to learn and focus our individual preferences and potential. While as educators, we are able to help shape the minds of every single one of our students. Together, gotoClassroom is dedicated to working with educators, students, parents, and developers to enhance the classroom experience by providing an enriching learning environment for students to succeed from A to Ph.D. -->
-										</p>
+										<!-- As students, we have the opportunity to find new ways to learn and focus our individual preferences and potential. While as educators, we are able to help shape the minds of every single one of our students. Together, gotoClassroom is dedicated to working with educators, students, parents, and developers to enhance the classroom experience by providing an enriching learning environment for students to succeed from A to Ph.D. -->
+									</p>
+								</li>
+								<li>
+									<h1>Who are we? What are we creating?</h1>
+									<p>gotoClassroom is a diverse team of 11 headquarted in Toronto, Canada and has been developing EdTech software for over 8 years.
+										We're creating the first Central APP Store to distribute and manage third party educational tools for the Learning Management System.</p>
 									</li>
-									<li>
-										<h1>Who are we? What are we creating?</h1>
-										<p>gotoClassroom is a diverse team of 11 headquarted in Toronto, Canada and has been developing EdTech software for over 8 years.
-											We're creating the first Central APP Store to distribute and manage third party educational tools for the Learning Management System.</p>
-									</li>
-									</ul>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+
+			<style>
+				label.error{
+					color: red;
+				}
+			</style>
+
+			<script type="text/javascript">
+			$(function() {
+				$('#st-accordion').accordion({
+					oneOpenedItem : true
+				});
+			});
+			</script>
