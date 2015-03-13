@@ -74,14 +74,14 @@ JQTWEET = {
                   //item is less than item count
                 }
 
-	             if (JQTWEET.useGridalicious) {
+                if (JQTWEET.useGridalicious) {
 	                //run grid-a-licious
-					$(JQTWEET.appendTo).gridalicious({
-						gutter: 13,
-						width: 200,
-						animate: true
-					});
-		     	}
+        					$(JQTWEET.appendTo).gridalicious({
+        						gutter: 13,
+        						width: 200,
+        						animate: true
+        					});
+      		     	}
 
                } else alert('no data returned');
 
@@ -101,7 +101,8 @@ JQTWEET = {
         var rightNow = new Date();
         var then = new Date(dateString);
 
-        if ($.browser.msie) {
+        //if ($.browser.msie) {
+        if(navigator.appVersion.indexOf("MSIE") !== -1){
             // IE can't parse these crazy Ruby dates
             then = Date.parse(dateString.replace(/( \+)/, ' UTC$1'));
         }
