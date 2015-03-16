@@ -1265,4 +1265,7 @@ Accordion
     .st-accordion ul li > a span{
         width: 16px;
     }
+    .showcase .download-btn {
+        margin-top:0;
+    }
 }
