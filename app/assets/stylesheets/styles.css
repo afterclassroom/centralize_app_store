@@ -1252,7 +1252,7 @@ Accordion
     border-right:1px solid #fff;
     border-bottom:1px solid #fff;
 }
-@media screen and (max-width: 320px){
+@media screen and (max-width: 340px){
     .st-accordion ul li > a{
         font-size:16px;
     }
@@ -1266,6 +1266,9 @@ Accordion
         width: 16px;
     }
     .showcase .download-btn {
-        margin-top:0;
+        margin-top:0 !important;
+    }
+    .navicmenu{
+        margin-top: -40px;
     }
 }
