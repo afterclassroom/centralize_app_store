@@ -1173,7 +1173,7 @@ Accordion
 ========================================================================== */
 .st-accordion{
     width:100%;
-    min-width:270px;
+    min-width:212px;
     margin: 0 auto;
     border: 1px solid #c7deef;
 }
@@ -1254,6 +1254,15 @@ Accordion
 }
 @media screen and (max-width: 320px){
     .st-accordion ul li > a{
-        font-size:20px;
+        font-size:16px;
+    }
+    .st-accordion ul li {
+        padding: 0px 10px;
+    }
+    .st-accordion ul li > a:hover span {
+        right: -8px;
+    }
+    .st-accordion ul li > a span{
+        width: 16px;
     }
 }
