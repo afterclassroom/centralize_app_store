@@ -14,4 +14,21 @@ class ContactsController < ApplicationController
 		end
 		render :nothing => true
 	end
+
+	def create_source_code
+		if params[:school_email] && params[:school_name]
+			content = {
+				school_name: params[:school_name],
+				school_address: params[:school_address],
+				school_tel: params[:school_tel],
+				school_email: params[:school_email],
+				school_principle: params[:school_principle],
+				your_role: params[:your_role],
+				message_text: params[:message_text]
+			}
+
+			UserMailer.delay.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION)
+		end
+		render :nothing => true
+	end
 end

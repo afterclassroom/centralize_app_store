@@ -83,12 +83,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # ExceptionNotifier
-  config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[ERROR: Gotoclassroom] ",
-    :sender_address =>'"Notifier" <support@gotoclassroom.com>',
-    :exception_recipients => ['dungtqa@gmail.com', 'quachqhuy@yahoo.com']
-  }
+  # config.middleware.use ExceptionNotification::Rack,
+  # :email => {
+  #   :email_prefix => "[ERROR: Gotoclassroom] ",
+  #   :sender_address =>'"Notifier" <support@gotoclassroom.com>',
+  #   :exception_recipients => ['dungtqa@gmail.com', 'quachqhuy@yahoo.com']
+  # }
 
   config.action_mailer.delivery_method = :ses
   config.action_mailer.perform_deliveries = true
