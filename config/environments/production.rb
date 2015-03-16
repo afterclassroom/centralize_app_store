@@ -115,6 +115,7 @@ Rails.application.configure do
   PATH_TEMPLATE = "/var/www/themes/default"
   PATH_USER = "/var/www/"
   DOMAIN = "gotoclassroom.com"
+  CENTRALIZE_APP_URL = "gotoclassroom.com/centralize_app_store/"
   DASHBOARD_URL = 'http://dashboard.gotoclassroom.com'
   CLASS_URL = 'gotoclassroom.com/#/classdetail-activities/'
 

@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-	layout 'developer'
+	layout :resolve_layout
 
 	def update
 		self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
@@ -18,6 +18,17 @@ class RegistrationsController < Devise::RegistrationsController
 		else
 			clean_up_passwords resource
 			redirect_to edit_user_registration_path, :alert => "Change password failed"
+		end
+	end
+
+	private
+
+	def resolve_layout
+		case action_name
+		when "edit", "update"
+			"developer"
+		else
+			"application"
 		end
 	end
 end

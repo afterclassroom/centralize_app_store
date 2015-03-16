@@ -16,12 +16,20 @@ class ApiController < ApplicationController
 	end
 
 	def users
-
-		render json: 'users me ok'
+		url = CENTRALIZE_APP_URL + "me"
+		response = HTTParty.get(url,
+			body: {
+				access_token: access_token
+				},
+			headers: {
+				"Host" => DOMAIN
+			},
+			timeout: 600
+		)
+		render json: response
 	end
 
 	def users_search
-
 		render json: 'users search ok'
 	end
 

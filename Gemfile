@@ -80,3 +80,6 @@ gem 'delayed_job_active_record'
 
 # Resque like web interface for delayed job
 gem 'delayed_job_web'
+
+# Makes http fun again!
+gem 'httparty'

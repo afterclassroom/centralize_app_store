@@ -109,6 +109,7 @@ Rails.application.configure do
   PATH_TEMPLATE = "/var/www/themes/default"
   PATH_USER = "/var/www/"
   DOMAIN = "developer.afterclassroom.com"
+  CENTRALIZE_APP_URL = "developer.afterclassroom.com/centralize_app_store/"
   DASHBOARD_URL = "http://dev.afterclassroom.com"
   CLASS_URL = 'afterclassroom.com/#/classdetail-activities/'
 
