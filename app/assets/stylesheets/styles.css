@@ -1254,6 +1254,6 @@ Accordion
 }
 @media screen and (max-width: 320px){
     .st-accordion ul li > a{
-        font-size:36px;
+        font-size:20px;
     }
 }

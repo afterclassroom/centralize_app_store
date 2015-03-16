@@ -15,7 +15,7 @@
 	.feature-content{width:60%;}
 }
 @media screen and (max-width:640px){
-	.use-btn{display:none;}
+	.use-btn{/*display:none;*/padding: 20px;}
 	footer li{display:block;text-align:left;padding:20px 0;border-bottom:dashed 1px #c7cacc;margin-right:0!important;float:none;}
 	nav{margin-top:40px;}
 	.overlay ul{margin-left:0px;}
