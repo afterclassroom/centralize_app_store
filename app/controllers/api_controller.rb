@@ -1,8 +1,30 @@
 class ApiController < ApplicationController
 
 	def classrooms
-
-		render json: 'classrooms ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms"
+			response = HTTParty.get(url,
+				body: {
+					page: params[:page],
+					per_page: params[:per_page],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	def classrooms_students

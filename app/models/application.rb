@@ -2,9 +2,17 @@ class Application < ActiveRecord::Base
 	include RailsSettings::Extend
 
 	validates :name, uniqueness: true
+	validates :app_key, :uniqueness => true
+
 	belongs_to :user
 	has_many :app_notifications, :dependent => :destroy
 	has_many :app_categories, :dependent => :destroy
+
+	def self.generate_unique_app_key(app_key = SecureRandom.hex(16))
+		client_app = where(:app_key => app_key)
+		return app_key if client_app.blank?
+		generate_unique_app_key
+	end
 
 	def make_icon(at_file)
 		self.settings.icon = {

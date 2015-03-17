@@ -27,6 +27,10 @@ class DeveloperController < ApplicationController
 		@application.website = params[:application][:website]
 		@application.callback_url = params[:application][:callback_url]
 		@application.state = 'waiting'
+
+		@application.app_key   = Application.generate_unique_app_key
+    	@application.app_secret = SecureRandom.hex(16)
+
 		@application.save
 
 		redirect_to action: 'app_list'

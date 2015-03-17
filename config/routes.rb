@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   get "/delayed_job" => DelayedJobWeb, :anchor => false
 
+  get 'api/classrooms' => 'api#classrooms'
   get 'api/classrooms/:id' => 'api#classrooms'
   get 'api/classrooms/:id/students' => 'api#classrooms_students'
   get 'api/classrooms/:id/parents' => 'api#classrooms_parents'
