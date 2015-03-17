@@ -35,7 +35,7 @@ class ApiController < ApplicationController
 		else
 			render :json => {
 				:meta => {
-					message: 'Could not find lms.'
+					message: 'Could not find this lms.'
 				}
 			}
 		end
