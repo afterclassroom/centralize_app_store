@@ -10,6 +10,7 @@ class ApiController < ApplicationController
 				body: {
 					page: params[:page],
 					per_page: params[:per_page],
+					id: params[:id],
 					access_token: access_token
 					},
 					headers: {
@@ -28,13 +29,59 @@ class ApiController < ApplicationController
 	end
 
 	def classrooms_students
-
-		render json: 'classrooms students ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms_students"
+			response = HTTParty.get(url,
+				body: {
+					page: params[:page],
+					per_page: params[:per_page],
+					id: params[:id],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	def classrooms_parents
-
-		render json: 'classrooms parents ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms_parents"
+			response = HTTParty.get(url,
+				body: {
+					page: params[:page],
+					per_page: params[:per_page],
+					id: params[:id],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	def users
@@ -64,17 +111,81 @@ class ApiController < ApplicationController
 	end
 
 	def users_search
-		render json: 'users search ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "users_search"
+			response = HTTParty.get(url,
+				body: {
+					key_word: params[:key_word],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	def users_my_classrooms
-
-		render json: 'users my_classrooms ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "my_classrooms"
+			response = HTTParty.get(url,
+				body: {
+					user_id: params[:user_id],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	def users_my_yearbooks
-
-		render json: 'users my_yearbooks ok'
+		access_token = params[:access_token]
+		lms = get_lms(access_token)
+		if lms
+			lms_domain = lms.domain
+			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "my_yearbooks"
+			response = HTTParty.get(url,
+				body: {
+					user_id: params[:user_id],
+					access_token: access_token
+					},
+					headers: {
+						"Host" => DOMAIN
+						},
+						timeout: 600
+						)
+			render json: response
+		else
+			render :json => {
+				:meta => {
+					message: 'Could not find this lms.'
+				}
+			}
+		end
 	end
 
 	private
