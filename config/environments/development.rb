@@ -92,7 +92,7 @@ Rails.application.configure do
   PATH_TEMPLATE = "/var/www/gotoclassroom_polymer/app"
   PATH_USER = "/vagrant_data/"
   DOMAIN = "localhost:3001"
-  CENTRALIZE_APP_URL = "http://localhost:3000/centralize_app_store/"
+  CENTRALIZE_APP_URL = "/centralize_app_store/"
   DASHBOARD_URL = 'http://localhost:9000'
   CLASS_URL = 'localhost:9001/#/classdetail-activities/'
 
