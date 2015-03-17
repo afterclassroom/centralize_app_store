@@ -20,9 +20,9 @@
 		margin-top: 30px;
 	}
 	footer li{display:block;text-align:left;padding:20px 0;border-bottom:dashed 1px #c7cacc;margin-right:0!important;float:none;}
-	nav{margin-top:40px;}
+	.overlay-boxify.open nav{margin-top:-30px;}
 	.overlay ul{margin-left:0px;}
-	.overlay ul li a{padding:20px 0;min-width:120px;font-size:12px;}
+	.overlay.overlay-boxify ul li a{padding:20px 0;min-width:85px;font-size:12px;}
 }
 @media screen and (max-width:465px){
 	.hero h1{font-size:40px;margin:100px 0 45px 0}
