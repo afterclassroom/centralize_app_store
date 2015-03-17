@@ -1,9 +1,10 @@
+
 #users/me.json
 
 ----------
 To return detail information from particular user.
 
-**URL:** http://gotoclassroom.com/api/v1/users/me
+**URL:** http://gotoclassroom.com/users/me
 
 **Method:**  GET
 

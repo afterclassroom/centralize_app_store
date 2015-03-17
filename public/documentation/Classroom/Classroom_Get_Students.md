@@ -3,7 +3,7 @@
 ----------
 Return all the students who belong to a specific classroom.
 
-**URL:** http://gotoclassroom.com/api/v1/classrooms/{id}/students.json
+**URL:** http://gotoclassroom.com/classrooms/{id}/students.json
 
 **Method:**  GET
 

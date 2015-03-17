@@ -3,7 +3,7 @@
 ----------
 To return all yearbooks those belong to either teacher or student.
 
-**URL:** http://gotoclassroom.com/api/v1/users/my_yearbooks
+**URL:** http://gotoclassroom.com/users/my_yearbooks
 
 **Method:**  GET
 

@@ -3,7 +3,7 @@
 ----------
 Return all the parents who have connected to a specific classroom.
 
-**URL:** http://gotoclassroom.com/api/v1/classrooms/{id}/parents.json
+**URL:** http://gotoclassroom.com/classrooms/{id}/parents.json
 
 **Method:**  GET
 

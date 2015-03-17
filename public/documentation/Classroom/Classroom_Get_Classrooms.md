@@ -4,7 +4,7 @@
 Get a specific classroom info
 
 
-**URL:** http://gotoclassroom.com/api/v1/classrooms/{{id}}.json
+**URL:** http://gotoclassroom.com/classrooms/{{id}}.json
 
 **Method:**  GET
 
