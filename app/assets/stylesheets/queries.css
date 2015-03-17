@@ -5,7 +5,7 @@
 }
 @media screen and (max-width:991px){
 	.feature-1,.feature-2{margin-bottom:50px;}
-	.device{display:none;}
+	/*.device{display:none;}*/
 	.screenshots ul li{width:50%;}
 	.screenshots-intro{padding:110px 0 100px 0;}
 	.feature-content{width:80%;}
@@ -34,4 +34,20 @@
 	.feature-icon{display:block;margin:0 auto;}
 	blockquote p{width:60%;}
 	.features-slider {padding: 11% 50px 10% 50px;}
+}
+@media screen and (max-width:500px){
+	.device{
+		width: 290px;
+		min-height: 400px;
+	}
+	.device-content img{
+		width: 290px;
+		height: 400px;
+	}
+	.device-content{
+		width: 290px;
+		height: 400px;
+		left: auto;
+		top: auto;
+	}
 }

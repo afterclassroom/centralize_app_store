@@ -503,9 +503,9 @@ Buttons
 .read-more-btn i, .download-btn i {
     margin-left: 5px
 }
-.showcase .download-btn {
+/*.showcase .download-btn {
     margin-top: 50px
-}
+}*/
 .download .download-btn {
     margin-top: 25px
 }
@@ -1264,9 +1264,6 @@ Accordion
     }
     .st-accordion ul li > a span{
         width: 16px;
-    }
-    .showcase .download-btn {
-        margin-top:0 !important;
     }
     .navicmenu{
         margin-top: -40px;
