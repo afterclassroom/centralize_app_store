@@ -1,29 +1,66 @@
-<h2>Sign up</h2>
+<script src="/assets/jquery.validate.js"></script>
+<link rel="stylesheet" href="/assets/jquery.validate.bootstrap.popover.css" />
+<script src='/assets/jquery.validate.bootstrap.popover.js'></script>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<style>
+  #new-account-form {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+</style>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="page-title">
+  <div class="container">
+    <h2>Sign up</h2>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+<div class="container" id="new-account-form">
+  <div class='span6'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: "off", :class => "input-block-level required" %>
+      </div>
+
+      <div class="field">
+        <%= f.label "password (8 characters minimum)" %>
+        <%= f.password_field :password, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "input-block-level required", :minlength => 8 %>
+      </div>
+
+      <div class="actions">
+        <button type="button" data-loading-text="Loading..." class="btn btn-primary" id="new_account">Sign up</button>
+        <%= link_to "Sign in", new_user_session_path, :class => "btn btn-info" %>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<script>
+  $(document).ready(function() {
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    var msg_error = '<%= alert %>';
+    if (msg_error != '') {
+      setTimeout(function () {
+        swal("", msg_error, "error");
+      }, 200);
+    }
 
-<%= render "devise/shared/links" %>
+    $('#new_account').click(function(){
+      var new_user = $('#new_user');
+      new_user.validate_popover({popoverPosition: 'top'});
+      new_user.validate();
+      if(new_user.valid()){
+        $(this).html('loading...');
+        new_user.submit();
+      }
+    });
+  });
+</script>

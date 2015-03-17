@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   has_one :user_paypal, :dependent => :destroy
   has_one :user_profile, :dependent => :destroy
 
+  after_create :build_profile
+  def build_profile
+    UserProfile.create(user: self)
+  end
+
   has_attached_file :avatar, {
     :bucket => BUCKET_IMG,
     :default_url => "http://gotoclassroom.com/assets/bg/user.png",

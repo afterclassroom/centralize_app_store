@@ -58,6 +58,20 @@
 <script>
 	$( document ).ready(function() {
 
+		var msg_error = '<%= alert %>';
+		var msg_success = '<%= notice %>'
+		if (msg_error != '') {
+			setTimeout(function () {
+				swal("", msg_error, "error");
+			}, 200);
+		}
+
+		if (msg_success != '') {
+			setTimeout(function () {
+				swal("", msg_success, "success");
+			}, 200);
+		}
+
 		var old_scr = document.getElementById("avatar").src;
 
 		$('#avatar').click(function() {
