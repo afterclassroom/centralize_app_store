@@ -1,0 +1,95 @@
+<section class="nav-page-content" role="main">
+<div class="page-header"><h1 id="gotoClassroom-api-endpoints">gotoClassroom API Endpoints</h1></div>
+<p>Once you've <a href="/developer/app_new">registered your client</a> it's easy to start requesting data from gotoClassroom.</p>
+<p>All endpoints are only accessible via http<strong>s</strong> and are located at <strong>gotoclassroom.com</strong>. For instance: you can grab your information by accessing the following URL with your client ID (replace the CLIENT-ID with your own):</p>
+<pre><code>http://gotoclassroom.com/api/v1/users/me?client_id=CLIENT-ID</code></pre>
+
+
+<p>You're best off using an access_token for the authenticated user for each endpoint, though many endpoints don't require it. In some cases an access_token will give you more access to information, and in all cases, it means that you are operating under a per-access_token limit vs. the same limit for your single client_id.</p>
+<div class="alert alert-warning" role="alert">
+<p>The URL examples throughout this documentation include an access_token that represents YOUR account tied to a generic gotoClassroom client. <strong>DO NOT use this access_token in production or for anything other than testing as they will change often</strong>. For your application, you should have each user go through an <a href="document.html#documentation/authentication.html">authentication and authorization</a> flow in order to receive a valid access_token.</p>
+</div>
+<br>
+<div class="page-header"><h2 id="limits">Limits</h2></div>
+<p>Careful, if you're sending too many requests too quickly, a 503 error code (server unavailable) will automatically be sent back.</p>
+<p>You are limited to 5000 requests per hour per access_token or client_id overall. Practically, this means you should (when possible) authenticate users so that limits are well outside the reach of a given user.</p>
+<br>
+<div class="page-header"><h2 id="deleting-objects">Deleting Objects</h2></div>
+<p>We do our best to have all our URLs be <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a>. Every endpoint (URL) may support one of four different http verbs. GET requests fetch information about an object, POST requests create objects, PUT requests update objects, and finally DELETE requests will delete objects.</p>
+<p>Since many old browsers don't support PUT or DELETE, we've made it easy to fake PUTs and DELETEs. All you have to do is do a POST with _method=PUT or _method=DELETE as a parameter and we will treat it as if you used PUT or DELETE respectively.</p>
+<br>
+<div class="page-header">
+	<h2 id="structure">Structure</h2>
+</div>
+<h3 id="the-envelope">The Envelope</h3>
+<p>Every response is contained by an envelope. That is, each response has a predictable set of keys with which you can expect to interact:</p>
+<div class="codehilite"><pre><code><span class="p">{</span>
+    <span class="nt">"meta"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"code"</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">},</span>
+    <span class="nt">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="err">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h3 id="meta">meta</h3>
+<p>The meta key is used to communicate extra information about the response to the developer. If all goes well, you'll only ever see a code key with value 200:</p>
+<div class="codehilite"><pre><code><span class="p">{</span>
+    <span class="nt">"meta"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"code"</span><span class="p">:</span> <span class="s2">200</span><span class="p">,</span>
+        <span class="nt">"status"</span><span class="p">:</span> <span class="mi">success</span><span class="p">,</span>
+        <span class="nt">"message"</span><span class="p">:</span> <span class="s2">"Success."</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<br>
+
+
+<h3 id="data">data</h3>
+<p>The data key belongs to the response data as it's not a persistence key. For instance: grabbing your information and the response will be:</p>
+<pre><code>{
+  "meta": {
+    "code": 200,
+    "status": "success",
+    "message": "Success."
+  },
+  "user": {
+    "id": 63,
+    "name": "John Doe",
+    "email": "john.doe@jdoe.com",
+    "avatar": {
+      "medium": "http://s3.amazonaws.com/photo_medium.jpg?1415241733",
+      "thumb": "http://s3.amazonaws.com/photo_medium_thumb.jpg?1415241733"
+    },
+    "role": "teacher",
+    "created_at": "2014-08-06T17:02:06.000+07:00"
+  }
+}</code></pre>
+<br>
+
+<h3 id="meta">error</h3>
+<p>Eroors will dis play the response:</p>
+<strong>Response Body</strong>
+<pre><code><span class="p">{</span>
+        <span class="nt">"error"</span><span class="p">:</span> <span class="s2">"Unauthorized. Invalid or expired token."</span>
+<span class="p">}</span>
+</code></pre>
+<strong>Response Code</strong>
+<div class="alert">401</div>
+
+<br>
+<div class="page-header"><h2 id="jsonp">JSONP</h2></div>
+<p>If you're writing an AJAX application, and you'd like to wrap our response with a callback, all you have to do is specify a callback parameter with any API call:</p>
+<pre><code>https://api.gotoClassroom.com/v1/classroom/1?access_token=fb2e77d.47a0479900504cb3ab4a1f626d174d2d&amp;callback=callbackFunction
+</code></pre>
+
+
+<p>Would respond with:</p>
+<div class="codehilite"><pre><code><span class="nx">callbackFunction</span><span class="p">({</span>
+    <span class="p">...</span>
+<span class="p">});</span>
+</code></pre></div>
+            </section>
