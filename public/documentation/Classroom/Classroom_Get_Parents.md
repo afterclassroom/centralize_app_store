@@ -3,7 +3,7 @@
 ----------
 Return all the parents who have connected to a specific classroom.
 
-**URL:** http://gotoclassroom.com/classrooms/{id}/parents.json
+**URL:** http://gotoclassroom.com/api/classrooms/{id}/parents.json
 
 **Method:**  GET
 
@@ -33,8 +33,8 @@ Return all the parents who have connected to a specific classroom.
           "name": "I'm parent Tran",
           "email": "dumplings28@yahoo.com",
           "avatar": {
-            "medium": "http://gotoclassroom.com/assets/bg/user.png",
-            "thumb": "http://gotoclassroom.com/assets/bg/user.png"
+            "medium": "http://gotoclassroom.com/api/assets/bg/user.png",
+            "thumb": "http://gotoclassroom.com/api/assets/bg/user.png"
           },
           "role": "parent",
           "created_at": "2014-07-04T10:43:04.000+07:00"
@@ -47,8 +47,8 @@ Return all the parents who have connected to a specific classroom.
           "name": "pr1@pr.com",
           "email": "pr1@pr.com",
           "avatar": {
-            "medium": "http://gotoclassroom.com/assets/bg/user.png",
-            "thumb": "http://gotoclassroom.com/assets/bg/user.png"
+            "medium": "http://gotoclassroom.com/api/assets/bg/user.png",
+            "thumb": "http://gotoclassroom.com/api/assets/bg/user.png"
           },
           "role": "parent",
           "created_at": "2014-06-28T11:22:44.000+07:00"

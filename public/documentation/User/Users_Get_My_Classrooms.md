@@ -3,7 +3,7 @@
 ----------
 To return all classrooms those belong to either particular teacher, student or parents.
 
-**URL:** http://gotoclassroom.com/users/my_classrooms
+**URL:** http://gotoclassroom.com/api/users/my_classrooms
 
 **Method:**  GET
 
