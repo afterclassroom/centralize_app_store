@@ -3,7 +3,7 @@
 ----------
 Return all the students who belong to a specific classroom.
 
-**URL:** http://gotoclassroom.com/classrooms/{id}/students.json
+**URL:** http://gotoclassroom.com/api/classrooms/{id}/students.json
 
 **Method:**  GET
 
@@ -33,8 +33,8 @@ Return all the students who belong to a specific classroom.
           "name": "student student1",
           "email": "st@st.com",
           "avatar": {
-            "medium": "http://gotoclassroom.com/assets/bg/user.png",
-            "thumb": "http://gotoclassroom.com/assets/bg/user.png"
+            "medium": "http://gotoclassroom.com/api/assets/bg/user.png",
+            "thumb": "http://gotoclassroom.com/api/assets/bg/user.png"
           },
           "role": "student",
           "created_at": "2014-08-06T17:06:58.000+07:00"
@@ -47,8 +47,8 @@ Return all the students who belong to a specific classroom.
           "name": "student Hanh",
           "email": "dumplings.f25@gmail.com",
           "avatar": {
-            "medium": "http://gotoclassroom.com/assets/bg/user.png",
-            "thumb": "http://gotoclassroom.com/assets/bg/user.png"
+            "medium": "http://gotoclassroom.com/api/assets/bg/user.png",
+            "thumb": "http://gotoclassroom.com/api/assets/bg/user.png"
           },
           "role": "student",
           "created_at": "2014-10-20T17:04:59.000+07:00"
@@ -61,8 +61,8 @@ Return all the students who belong to a specific classroom.
           "name": "Danny Tran",
           "email": "st2@st.com",
           "avatar": {
-            "medium": "http://gotoclassroom.com/assets/bg/user.png",
-            "thumb": "http://gotoclassroom.com/assets/bg/user.png"
+            "medium": "http://gotoclassroom.com/api/assets/bg/user.png",
+            "thumb": "http://gotoclassroom.com/api/assets/bg/user.png"
           },
           "role": "student",
           "created_at": "2014-07-03T15:41:03.000+07:00"

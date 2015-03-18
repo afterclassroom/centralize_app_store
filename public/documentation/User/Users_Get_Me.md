@@ -4,7 +4,7 @@
 ----------
 To return detail information from particular user.
 
-**URL:** http://gotoclassroom.com/users/me
+**URL:** http://gotoclassroom.com/api/users/me
 
 **Method:**  GET
 
