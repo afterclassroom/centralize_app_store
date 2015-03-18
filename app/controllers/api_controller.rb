@@ -1,4 +1,5 @@
 class ApiController < ApplicationController
+	rescue_from Exception, :with => :error_response
 
 	def classrooms
 		access_token = params[:access_token]
@@ -85,15 +86,15 @@ class ApiController < ApplicationController
 	end
 
 	def users
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "me"
 			response = HTTParty.get(url,
 				body: {
 					user_id: params[:user_id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -188,8 +189,17 @@ class ApiController < ApplicationController
 		end
 	end
 
+	protected
+	def error_response(exception)
+		render :json => {
+			:meta => {
+				message: exception.message
+			}
+		}
+	end
+
 	private
-	def get_lms(access_token)
-		Lm.find_by_access_token(access_token)
+	def get_lms(lm_id)
+		Lm.find(lm_id)
 	end
 end

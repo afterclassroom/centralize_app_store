@@ -12,6 +12,25 @@ class LmsController < ApplicationController
 	  end
   end
 
+  def get_lms_install
+    access_token = params[:access_token]
+    lm = Lm.find_by_access_token(access_token)
+    if lm
+      render :json => {
+        :meta => {
+          :success => "Success."
+        },
+        :lm => lm
+      }
+    else
+      render :json => {
+        :meta => {
+          :error => "Could not find lm."
+        }
+      }
+    end
+  end
+
   private
 
   def lm_params
