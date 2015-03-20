@@ -2,8 +2,8 @@ class ApiController < ApplicationController
 	rescue_from Exception, :with => :error_response
 
 	def classrooms
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms"
@@ -12,7 +12,7 @@ class ApiController < ApplicationController
 					page: params[:page],
 					per_page: params[:per_page],
 					id: params[:id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -30,8 +30,8 @@ class ApiController < ApplicationController
 	end
 
 	def classrooms_students
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms_students"
@@ -40,7 +40,7 @@ class ApiController < ApplicationController
 					page: params[:page],
 					per_page: params[:per_page],
 					id: params[:id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -58,8 +58,8 @@ class ApiController < ApplicationController
 	end
 
 	def classrooms_parents
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "classrooms_parents"
@@ -68,7 +68,7 @@ class ApiController < ApplicationController
 					page: params[:page],
 					per_page: params[:per_page],
 					id: params[:id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -112,15 +112,15 @@ class ApiController < ApplicationController
 	end
 
 	def users_search
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "users_search"
 			response = HTTParty.get(url,
 				body: {
 					key_word: params[:key_word],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -138,15 +138,15 @@ class ApiController < ApplicationController
 	end
 
 	def users_my_classrooms
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "my_classrooms"
 			response = HTTParty.get(url,
 				body: {
 					user_id: params[:user_id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
@@ -164,15 +164,15 @@ class ApiController < ApplicationController
 	end
 
 	def users_my_yearbooks
-		access_token = params[:access_token]
-		lms = get_lms(access_token)
+		lm_id = params[:id]
+		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
 			url = "http://" + lms_domain + CENTRALIZE_APP_URL + "my_yearbooks"
 			response = HTTParty.get(url,
 				body: {
 					user_id: params[:user_id],
-					access_token: access_token
+					access_token: lms.access_token
 					},
 					headers: {
 						"Host" => DOMAIN
