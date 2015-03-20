@@ -10,7 +10,8 @@ class ContactsController < ApplicationController
 				message: params[:txtDesc]
 			}
 
-			UserMailer.delay.contact(content, '[gotoClassroom] Contact Email', EMAIL_NOTIFICATION)
+			#UserMailer.delay.contact(content, '[gotoClassroom] Contact Email', EMAIL_NOTIFICATION)
+			UserMailer.contact(content, '[gotoClassroom] Contact Email', EMAIL_NOTIFICATION).deliver
 		end
 		render :nothing => true
 	end
@@ -27,7 +28,8 @@ class ContactsController < ApplicationController
 				message_text: params[:message_text]
 			}
 
-			UserMailer.delay.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION)
+			#UserMailer.delay.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION)
+			UserMailer.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION).deliver
 		end
 		render :nothing => true
 	end
