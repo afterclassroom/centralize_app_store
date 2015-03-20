@@ -83,3 +83,9 @@ gem 'delayed_job_web'
 
 # Makes http fun again!
 gem 'httparty'
+
+# Provides an easy ruby DSL & interface to AWS SES
+gem 'aws-ses', '~> 0.4.4', :require => 'aws/ses'
+
+# AWS SDK for Ruby
+gem 'aws-sdk', '1.54.0'
