@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   get 'api/users/my_yearbooks' => 'api#users_my_yearbooks'
 
   get 'lms_install' => 'lms#get_lms_install'
+  match 'lms_update' => 'lms#lms_update', via: [:patch, :put]
+  post 'lms_create' => 'lms#lms_create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
