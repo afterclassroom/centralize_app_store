@@ -37,7 +37,7 @@ class UserMailer < ActionMailer::Base
 				str = str + 'School Principle / President Name : ' + array[:school_principle].to_s + '<br>'
 				str = str + 'Role : ' + array[:your_role].to_s + '<br>'
 				str = str + 'Message :<br>'
-				str = str + '<pre style="font-family: arial;">' + array[:message].to_s + '</pre>'
+				str = str + '<pre style="font-family: arial;">' + array[:message_text].to_s + '</pre>'
 
 				render :text => str
 			end
