@@ -82,12 +82,12 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # ExceptionNotifier
-  config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[ERROR: PeSome] ",
-    :sender_address =>'"Notifier" <support@pesome.com>',
-    :exception_recipients => ['dungtqa@gmail.com', 'ngothiendat@gmail.com', 'quachqhuy@yahoo.com']
-  }
+  # config.middleware.use ExceptionNotification::Rack,
+  # :email => {
+  #   :email_prefix => "[ERROR: PeSome] ",
+  #   :sender_address =>'"Notifier" <support@pesome.com>',
+  #   :exception_recipients => ['dungtqa@gmail.com', 'ngothiendat@gmail.com', 'quachqhuy@yahoo.com']
+  # }
 
   # Paperclip
   BUCKET_IMG = "gotoclassroom_staging_imgs"
