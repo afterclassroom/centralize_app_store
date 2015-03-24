@@ -2,7 +2,7 @@ class ApiController < ApplicationController
 	rescue_from Exception, :with => :error_response
 
 	def classrooms
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -30,7 +30,7 @@ class ApiController < ApplicationController
 	end
 
 	def classrooms_students
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -58,7 +58,7 @@ class ApiController < ApplicationController
 	end
 
 	def classrooms_parents
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -86,7 +86,7 @@ class ApiController < ApplicationController
 	end
 
 	def users
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -112,7 +112,7 @@ class ApiController < ApplicationController
 	end
 
 	def users_search
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -138,7 +138,7 @@ class ApiController < ApplicationController
 	end
 
 	def users_my_classrooms
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
@@ -164,7 +164,7 @@ class ApiController < ApplicationController
 	end
 
 	def users_my_yearbooks
-		lm_id = params[:id]
+		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
 			lms_domain = lms.domain
