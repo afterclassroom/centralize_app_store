@@ -24,3 +24,5 @@
 //= require scripts
 //= require jquery.accordion
 //= require jquery.easing.1.3
+//= require jquery.tablesorter
+//= require jquery.tablesorter.widgets
