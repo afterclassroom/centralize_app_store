@@ -50,3 +50,6 @@
 .post_link {
 	margin-left: -30px;
 }
+.modgroups span.checkbox{
+	display: block;
+}
