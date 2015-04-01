@@ -43,4 +43,10 @@ class UserMailer < ActionMailer::Base
 			end
 		end
 	end
+
+	def get_free_lms_to_order(school_principle, school_email)
+		@school_principle = school_principle
+		subject = "We have received your order to lease free LMS"
+		mail(to: school_email, subject: subject)
+	end
 end

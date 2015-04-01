@@ -30,6 +30,8 @@ class ContactsController < ApplicationController
 
 			#UserMailer.delay.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION)
 			UserMailer.get_free_lms(content, '[gotoClassroom] Get the source code - Get Free LMS', EMAIL_NOTIFICATION).deliver
+
+			UserMailer.get_free_lms_to_order(params[:school_principle], params[:school_email]).deliver
 		end
 		render :nothing => true
 	end
