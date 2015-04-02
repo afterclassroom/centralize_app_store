@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 			var params = $('#get-lms-form').serialize();
 			$.post('/contacts/create_source_code', params, function(res){
-				swal("Thank you!", "You have message has been sent!", "success");
+				swal("Thank you!", "Your order has been received. It takes us about 2 business days to process your order. Thank you for your patience.", "success");
 				btn.button('reset');
 				$('#get-lms-form')[0].reset();
 				$('#myModal').modal('hide');
