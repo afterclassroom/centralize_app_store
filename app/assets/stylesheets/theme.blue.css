@@ -234,7 +234,7 @@
 	.tablesorter-headerRow th:focus{
 		border: 0 none;
 	}
-	.tablesorter-headerRow th:nth-child(1){
+	.tablesorter-headerRow th:nth-child(1) {
 		width: 22%;
 		text-align: center;
 		font-size: 18px;
@@ -277,3 +277,11 @@
 	.nested-bor.tablesorter-default tbody td{
 		padding: 10px;
 	}
+
+	@media (max-width: 600px){
+		.tablesorter.tablesorter-default tr.chevent.even .tablesorter-headerRow th:nth-child(1){
+			width: 30%;
+		}
+	}
+
+	.tablesorter.tablesorter-default tr.chevent.even .tablesorter-headerRow th:nth-child(1)
