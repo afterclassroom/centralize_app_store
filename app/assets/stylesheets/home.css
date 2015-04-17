@@ -11,10 +11,10 @@
  * file per style scope.
  *
  *= require bootstrap.min
- *= require ../../assets/javascripts/fancybox/jquery.fancybox63b9.css 
+ *= require ../../assets/javascripts/fancybox/jquery.fancybox63b9.css
  *= require flickity
  *= require animate
  *= require styles
- *= require queries  
- *= require theme.blue 
+ *= require queries
+ *= require theme.blue
  */
