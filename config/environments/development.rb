@@ -103,5 +103,5 @@ Rails.application.configure do
   FACEBOOK_KEY = "768178679921174"
   FACEBOOK_SECRET = "42a8ea7351da216b0bacc0d0c7ccdb09"
 
-  EMAIL_NOTIFICATION = 'huynhvietminh012@gmail.com'
+  EMAIL_NOTIFICATION = 'vietbeto@gmail.com'
 end

@@ -14,9 +14,7 @@ class UserMailer < ActionMailer::Base
 		mail(:to => to_email, content_type: "text/html", :subject => subject) do |format|
 			format.text do
 				str = ''
-				str = str + 'First name : ' + array[:first_name].to_s + '<br>'
-				str = str + 'Last name : ' + array[:last_name].to_s + '<br>'
-				str = str + 'Company/Orgarnization : ' + array[:company].to_s + '<br>'
+				str = str + 'Full name : ' + array[:full_name].to_s + '<br>'
 				str = str + 'Email address : ' + array[:email].to_s + '<br>'
 				str = str + 'Message :<br>'
 				str = str + '<pre style="font-family: arial;">' + array[:message].to_s + '</pre>'
