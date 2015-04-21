@@ -5235,7 +5235,7 @@ section {
         color: rgb(255, 255, 255);
         padding: 5px;
         text-align: center;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         float: left;
         margin-right: 20px;
     }
@@ -5254,3 +5254,18 @@ section {
     #pressContainer time > span {
         display: none;
     }
+    .pahover{
+        color: #0d638f;
+    }
+    .pahover:hover {
+      color: #08A8FA;
+  }
+  .plist-item{
+    display: list-item;
+    margin-left: 20px;
+}
+.pdecimal {
+  display: list-item;
+  list-style-type: decimal;
+  margin-left: 30px;
+}
