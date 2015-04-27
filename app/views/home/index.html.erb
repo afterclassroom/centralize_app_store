@@ -63,47 +63,28 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="myModalLabel">Get Free LMS Now</h4>
-									<h5 class="modal-title" id="myModalLabel">(It takes about 2 days for us to verify your school/institution before we send you the LMS source code and Server deployment instructions)</h5>
+									<h5 class="modal-title" id="myModalLabel">(Is it really free? Yes, it’s real and completely free with no strings attached. gotoClassroom’s LMS source code can be cloned to your school’s Server from our Github account as the following)</h5>
 								</div>
 								<div class="modal-body">
-									<form id="get-lms-form" accept-charset="utf-8" method="post">
-										<div class="form-group">
-											<label for="recipient-name" class="control-label">School Name*:</label>
-											<input type="text" class="form-control required" name="school_name">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">School Address*:</label>
-											<input type="text" class="form-control required" name="school_address">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">School Tel*:</label>
-											<input type="text" class="form-control required" name="school_tel">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">School Email*:</label>
-											<input type="text" class="form-control required email" name="school_email">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">School Principle / President Name*:</label>
-											<input type="text" class="form-control required" name="school_principle">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">Your Role:</label>
-											<select name="your_role" class="form-control">
-												<option value="School IT Admin">School IT Admin</option>
-												<option value="Administration Staff">Administration Staff</option>
-												<option value="School District Admin">School District Admin</option>
-												<option value="Others">Others</option>
-											</select>
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">Message:</label>
-											<textarea class="form-control" name="message_text" rows="5"></textarea>
-										</div>
-									</form>
+									<p style="color: #333">
+										<a href="https://github.com/gotoClassroom/lms_install" target="_blank">https://github.com/gotoClassroom/lms_install</a>
+									</p>
+									<p style="color: #333">
+										What do you need to get the LMS up and running on your school’s Server? Here are things you will need:
+									</p>
+									<p style="color: #333; padding-left:10px;">
+										1) Either a dedicated or a cloud-based server with a minimum of 2GB of RAM  <br>
+										2) Website domain or subdomain (e.g., www.yourdomain.com) <br>
+										3) Amazon S3 (register with Amazon Cloud service in less than 5 minutes) <br>
+ 										4) Amazon SES (register with Amazon Cloud service in less than 5 minutes) <br>
+										5) 1 or 2 people with minimum computer knowledge
+									</p>
+									<p style="color: #333">
+										Do you need a software expert for the deployment and maintenance of the LMS? The answer is a big NO. One or two people with minimum computer knowledge could easily do the job. Our deployment script will walk with LMS administrator step-by-step, and advise them on when to provide Website Domain or Subdomain, Amazon S3, and Amazon SES secret access key etc.
+									</p>
 								</div>
 								<div class="modal-footer">
-									<button id="btn-get-lms" type="button" class="btn btn-primary">Submit</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
