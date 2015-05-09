@@ -161,12 +161,14 @@
                 <%= flash[:error] %>
               </div>
             <% end %>
-            <div class="col-md-6 col-sm-6 ">
-              <%= f.email_field :email, autofocus: true, :class => "form-control required email", :placeholder => "Email" %>
-            </div>
+            <div>
+              <div class="col-md-6 col-sm-6 ">
+                <%= f.email_field :email, autofocus: true, :class => "form-control required email", :placeholder => "Email" %>
+              </div>
 
-            <div class="col-md-6 col-sm-6">
-              <%= f.password_field :password, autocomplete: "off", :class => "form-control required", :minlength =>8, :placeholder => "Password" %>
+              <div class="col-md-6 col-sm-6">
+                <%= f.password_field :password, autocomplete: "off", :class => "form-control required", :minlength =>8, :placeholder => "Password" %>
+              </div>
             </div>
           </div>
           <div class="col-md-12 col-sm-12">
