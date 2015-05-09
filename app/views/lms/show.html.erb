@@ -1,0 +1,118 @@
+<nav class="navconer navbar-default" style="background:#f8f8f8;">
+	<div class="container">
+		<div class="navbar-header" style="float: left;">
+			<h2 style="margin: 0;padding: 20px 0;">Show</h2>
+		</div>
+	</div>
+</nav>
+
+<div class="container lms-container">
+	<% if !@lm.blank? %>
+	<div class="form-horizont">
+		<div class="brand-img">
+			<%= image_tag @lm.brand.url %>
+		</div>
+
+		<div style="overflow: hidden;">
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Name: </label>
+				<div>&nbsp;<%= @lm.name %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Domain: </label>
+				<div>&nbsp;<%= @lm.domain %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">School name: </label>
+				<div>&nbsp;<%= @lm.school_name %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">School address: </label>
+				<div>&nbsp;<%= @lm.school_address %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">School telephone: </label>
+				<div>&nbsp;<%= @lm.school_telephone %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">School email: </label>
+				<div>&nbsp;<%= @lm.school_email %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Admin email: </label>
+				<div>&nbsp;<%= @lm.admin_email %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Admin name: </label>
+				<div>&nbsp;<%= @lm.admin_name %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Principle name: </label>
+				<div>&nbsp;<%= @lm.principle_name %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Access token: </label>
+				<div>&nbsp;<%= @lm.access_token %></div>
+			</div>
+
+			<div class="form-group span" id="field-style">
+				<%= link_to 'Edit', edit_lm_path(@lm),:class => "btn btn-info" %>
+				<%= link_to "Delete", "javascript:;", :method => :delete, :url => lm_path(@lm), :class => "btn btn-danger lm-delete-btn" %>
+				<%= link_to 'Back', lms_path, :class => "btn btn-default" %>
+			</div>
+		</div>
+
+
+	</div>
+	<% end %>
+</div>
+
+<script>
+	$(document).ready(function() {
+
+		$(".lm-delete-btn").click(function() {
+			var url = $(this).attr('url');
+			swal({
+				title: "Are you sure?",
+				type: "info",
+				showCancelButton: true,
+				confirmButtonColor: "#f35958",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false
+			},
+			function(){
+				$('.confirm').attr('data-loading-text', 'Loading...');
+				$('.confirm').button('loading');
+				$.ajax({
+					type: 'POST',
+					url: url,
+					data: {"_method":"delete"},
+					success: function(data){
+						$('.confirm').button('reset');
+						setTimeout(function() {
+							swal({
+								title: "Finished",
+								text: "Delete successfull.",
+								type: "success",
+								confirmButtonText: "Ok",
+								closeOnConfirm: false
+							},
+							function() {
+								window.location = "/lms";
+							})
+						}, 300);
+					}
+				});
+			});
+		});
+	});
+</script>

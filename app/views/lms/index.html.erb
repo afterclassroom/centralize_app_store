@@ -1,0 +1,77 @@
+<nav class="navconer navbar-default" style="background:#f8f8f8;">
+	<div class="container">
+		<div class="navbar-header" style="float: left;">
+			<h2 style="margin: 0;padding: 20px 0;">LMS Management</h2>
+		</div>
+		<div class="navbar-crnew pull-right" style="padding: 12px 0;">
+			<%= link_to 'Create new', new_lm_path, :class => "btn btn-success", :style => "padding: 8px 14px;font-size: 20px;margin: 0;" %>
+		</div>
+	</div>
+</nav>
+
+
+<!-- Begin page content -->
+<div class="container lms-container">
+	<% if !@lms.blank? %>
+		<% @lms.each do |lm| %>
+			<div class="media" id="lm_<%= lm.id %>">
+				<div class="media-left media-middle" style="float:left;margin-right: 10px;">
+					<div class="media-img"><a href="#"><%= image_tag lm.brand.url, :class => "dia-object" %></a></div>
+				</div>
+				<div class="media-body media-middle">
+					<h4 class="media-heading"><%= lm.name %></h4>
+					<h4 class="media-heading"><a href="#"><%= lm.domain %></a></h4>
+					<h4 class="media-heading"><%= lm.school_name %></h4>
+					<div class="ved-right">
+						<div class="pull-right">
+							<%= link_to "View", lm_path(lm), :class => "btn btn-primary" %>
+							<%= link_to "Edit", edit_lm_path(lm), :class => "btn btn-info" %>
+							<%= link_to "Delete", "javascript:;", :method => :delete, :url => lm_path(lm), :class => "btn btn-danger lm-delete-btn" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<nav>
+			<ul class="pager pager-nepr">
+				<%= will_paginate @lms, :inner_window => 1, :outer_window => 1, :gap => "...", renderer: BootstrapPagination::Rails %>
+			</ul>
+		</nav>
+	<% else %>
+		<p>No lm be created</p>
+	<% end %>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$(".lm-delete-btn").click(function() {
+			var url = $(this).attr('url');
+			var lm_id = url.substring(url.lastIndexOf('/') + 1);
+			swal({
+				title: "Are you sure?",
+				type: "info",
+				showCancelButton: true,
+				confirmButtonColor: "#f35958",
+				confirmButtonText: "Yes, delete it!",
+				closeOnConfirm: false
+			},
+			function(){
+				$('.confirm').attr('data-loading-text', 'Loading...');
+				$('.confirm').button('loading');
+				$.ajax({
+					type: 'POST',
+					url: url,
+					data: {"_method":"delete"},
+					success: function(data){
+						$('.confirm').button('reset');
+						$("#lm_" + lm_id).fadeOut(100);
+						setTimeout(function() {
+							swal("Finished", "Delete successfull.", "success");
+						}, 300);
+					}
+				});
+			});
+		});
+	});
+</script>

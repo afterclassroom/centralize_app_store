@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317033127) do
+ActiveRecord::Schema.define(version: 20150507081243) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -228,6 +228,12 @@ ActiveRecord::Schema.define(version: 20150317033127) do
     t.string   "admin_email"
     t.string   "admin_name"
     t.string   "principle_name"
+    t.integer  "user_id"
+    t.string   "brand_file_name"
+    t.string   "brand_content_type"
+    t.integer  "brand_file_size"
+    t.datetime "brand_updated_at"
+    t.string   "school_name"
   end
 
   create_table "paypal_notifications", force: true do |t|

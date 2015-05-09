@@ -29,3 +29,6 @@
 //= require forem
 //= require jQuery-LiveUrl/jquery.liveurl
 //= require dev_scripts
+//= require jquery.validate.bootstrap.popover
+//= require jquery.validate
+//= require sweet-alert.min

@@ -29,12 +29,12 @@
 					<ul class="nav navbar-nav pull-right">
 						<li class="dropdown active">
 							<a title="">
-								<%= image_tag current_user.avatar(:thumb), :size => '40' %> 
+								<%= image_tag current_user.avatar(:thumb), :size => '40', :style=>"width: 63px;" %>
 								<% if current_user.user_profile.name.blank? %>
 									<%= truncate(current_user.email, :length => 30, :omission => "...") %>
 								<% else %>
 									<%= truncate(current_user.user_profile.name, :length => 30, :omission => "...") %>
-								<% end %> 
+								<% end %>
 								$<%= (current_user.user_paypal != nil ? current_user.user_paypal.balance : 0) %>
 							</a>
 							<ul class="dropdown-menu">

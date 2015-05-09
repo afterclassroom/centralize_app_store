@@ -130,6 +130,9 @@
     background-image: linear, 180deg, #8b9297, #484d51;
     border-color: transparent;
   }
+  #sign_in_error {
+    font-size: 90%;
+  }
 </style>
 
 <div class="error-body no-top lazy">
@@ -142,10 +145,10 @@
           <% if !params.has_key?(:response_type) %>
           <div style="position: absolute;right: 0;top: 3px;">
             <div class="col-sm-3">
-              <a href="javascript:;" id="facebook_signup"><img width="24" src="../assets/bg/fa.png" style="max-width: none;"></a>
+              <a href="javascript:;" id="facebook_signup"><img style="width:24px;" src="../assets/bg/fa.png" style="max-width: none;"></a>
             </div>
             <div class="col-sm-3">
-              <a href="javascript:;" id="twitter_signup"><img width="24" src="../assets/bg/tw.png" style="max-width: none;"></a>
+              <a href="javascript:;" id="twitter_signup"><img style="width:24px;" src="../assets/bg/tw.png" style="max-width: none;"></a>
             </div>
           </div>
           <%end%>
@@ -153,10 +156,10 @@
         <div class="tiles grey p-t-20 p-b-20 text-black" style="padding: 20px;">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:id => "login-form", :class => "animated fadeIn"}) do |f| %>
           <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-            <% if @error %>
-            <div class="label alert-danger" style="position: relative;top: -12px;left: 15px;">
-              <%= @error %>
-            </div>
+            <% if flash[:error] %>
+              <div id="sign_in_error" class="label alert-danger" style="position: relative;top: -12px;left: 15px;">
+                <%= flash[:error] %>
+              </div>
             <% end %>
             <div class="col-md-6 col-sm-6 ">
               <%= f.email_field :email, autofocus: true, :class => "form-control required email", :placeholder => "Email" %>

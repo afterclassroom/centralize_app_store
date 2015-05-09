@@ -1,0 +1,215 @@
+<%= form_for(@lm, :html => {:multipart => true, :class => "form-horizont", :id => "lmForm"}) do |f| %>
+	<% if @lm.name.nil? %>
+		<div class="form-group span4">
+			<label class="col-xs-12 col-sm-3 control-label">Logo LMS</label>
+			<div class="col-xs-12 col-sm-7">
+				<div class="input-group image-preview">
+					<input type="text" class="form-control image-preview-filename input-block-level" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+					<span class="input-group-btn" style="vertical-align: top;">
+						<!-- image-preview-clear button -->
+						<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+							<span class="glyphicon glyphicon-remove"></span> Clear
+						</button>
+						<!-- image-preview-input -->
+						<div class="btn btn-default image-preview-input" style="padding: 4px 12px;margin-bottom: 0">
+							<span class="glyphicon glyphicon-folder-open"></span>
+							<span class="image-preview-input-title">Browse</span>
+							<%= f.file_field :brand, :class => "form-control" %>
+							<!-- <input class="form-control" name="fileName" type="file" /> -->
+						</div>
+					</span>
+				</div><!-- /input-group image-preview [TO HERE]-->
+			</div>
+		</div>
+	<% else %>
+		<div class="form-group span4">
+			<label class="col-xs-12 col-sm-3 control-label">Logo LMS</label>
+			<div class="col-xs-12 col-sm-7">
+				<div class="input-group image-preview" data-original-title="" title="" data-content="<img src='<%= @lm.brand.url %>' style='width: 250px; height: 200px;' id='dynamic'>" aria-describedby="popover72540">
+					<input type="text" disabled="disabled" class="form-control input-block-level image-preview-filename" value="<%= @lm.brand_file_name %>"> <!-- don't give a name === doesn't send on POST/GET -->
+					<span class="input-group-btn" style="vertical-align: top;">
+						<!-- image-preview-clear button -->
+						<button style="margin-bottom: 0" class="btn btn-default image-preview-clear" type="button">
+							<span class="glyphicon glyphicon-remove"></span> Clear
+						</button>
+						<!-- image-preview-input -->
+						<div class="btn btn-default image-preview-input" style="padding: 4px 12px;margin-bottom: 0">
+							<span class="glyphicon glyphicon-folder-open"></span>
+							<span class="image-preview-input-title">Change</span>
+							<%= f.file_field :brand, :class => "form-control input-block-level", :data => {:fv => {:field => "fileName"}} %>
+						</div>
+					</span>
+				</div>
+				<div role="tooltip" class="popover fade bottom in" id="popover72540" style="top: 280px; left: 290px; display: block;"><div class="arrow" style="left: 50%;"></div><h3 class="popover-title"><strong>Preview</strong><button type="button" id="close-preview" style="font-size: initial;" class="close pull-right">x</button></h3><div class="popover-content"><img id="dynamic" style="width: 250px; height: 200px;" src="<%= @lm.brand.url %>"></div></div>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">Name</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :name, :class => "form-control input-block-level required" %>
+			<!-- <input class="form-control input-block-level" name="fullName" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">Domain</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :domain, :class => "form-control input-block-level required" %>
+			<!-- <input class="form-control input-block-level" name="domain" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">School Name</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :school_name, :class => "form-control input-block-level required" %>
+			<!-- <input class="form-control input-block-level" name="address" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">School Address</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :school_address, :class => "form-control input-block-level" %>
+			<!-- <input class="form-control input-block-level" name="address" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">School Telephone</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :school_telephone, :class => "form-control input-block-level" %>
+			<!-- <input class="form-control input-block-level" name="mobilePhone" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">School Email</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.email_field :school_email, :class => "form-control input-block-level email" %>
+			<!-- <input class="form-control input-block-level" name="email" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">Admin Email</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.email_field :admin_email, :class => "form-control input-block-level email" %>
+			<!-- <input class="form-control input-block-level" name="address" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">Admin Name</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :admin_name, :class => "form-control input-block-level" %>
+			<!-- <input class="form-control input-block-level" name="address" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">Principle Name</label>
+		<div class="col-xs-12 col-sm-7">
+			<%= f.text_field :principle_name, :class => "form-control input-block-level" %>
+			<!-- <input class="form-control input-block-level" name="principleName" type="text" /> -->
+		</div>
+	</div>
+
+	<div class="form-group span4">
+		<label class="col-xs-12 col-sm-3 control-label">&nbsp;</label>
+		<div class="col-xs-12 col-sm-7">
+			<button type="submit" class="btn btn-primary" id="submitBtn">Create</button>
+			<%= link_to 'Back', lms_path, :class => "btn btn-info" %>
+			<!-- <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">Cancel</button> -->
+		</div>
+	</div>
+
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('#submitBtn').click(function(){
+			var lmForm = $('#lmForm');
+			lmForm.validate_popover({popoverPosition: 'top'});
+			lmForm.validate();
+			if(lmForm.valid()){
+				lmForm.submit();
+			}
+		});
+	});
+
+	$(document).on('click', '#close-preview', function(){
+      $('.image-preview').popover('hide');
+      // Hover befor close the preview
+      $('.image-preview').hover(
+        function () {
+         $('.image-preview').popover('show');
+       },
+       function () {
+         $('.image-preview').popover('hide');
+       }
+       );
+    });
+
+	$(function() {
+	    // Create the close button
+	    var closebtn = $('<button/>', {
+	    	type:"button",
+	    	text: 'x',
+	    	id: 'close-preview',
+	    	style: 'font-size: initial;',
+	    });
+	    closebtn.attr("class","close pull-right");
+	    // Set the popover default content
+	    $('.image-preview').popover({
+	    	trigger:'manual',
+	    	html:true,
+	    	title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+	    	content: "There's no image",
+	    	placement:'bottom'
+	    });
+	    // Clear event
+	    $('.image-preview-clear').click(function(){
+	    	$('.image-preview').attr("data-content","").popover('hide');
+	    	$('.image-preview-filename').val("");
+	    	$('.image-preview-clear').hide();
+	    	$('.image-preview-input input:file').val("");
+	    	$(".image-preview-input-title").text("Browse");
+	    	$('#popover72540').hide();
+	    });
+	    // Create the preview image
+	    $(".image-preview-input input:file").change(function (){
+	    	var img = $('<img/>', {
+	    		id: 'dynamic',
+	    		width:250,
+	    		height:200
+	    	});
+	    	var lm_name = '<%= @lm.name %>';
+	    	if (lm_name != '') {
+	    		$('#popover72540').hide();
+	    	}
+	    	var file = this.files[0];
+	    	var reader = new FileReader();
+	        // Set preview image into the popover data-content
+	        reader.onload = function (e) {
+	        	$(".image-preview-input-title").text("Change");
+	        	$(".image-preview-clear").show();
+	        	$(".image-preview-filename").val(file.name);
+	        	img.attr('src', e.target.result);
+	        	$(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+	        }
+	        reader.readAsDataURL(file);
+	    });
+	});
+
+	$(function(){
+		$(document).on('click', '#close-preview', function(){
+			$('#popover72540').hide();
+		});
+	});
+
+
+</script>

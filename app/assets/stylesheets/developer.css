@@ -23,4 +23,6 @@
  *= require 'forem/base'
  *= require forem
  *= require font-awesome.min
+ *= require lms
+ *= require sweet-alert
  */

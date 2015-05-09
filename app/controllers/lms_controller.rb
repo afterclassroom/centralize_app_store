@@ -1,4 +1,6 @@
 class LmsController < ApplicationController
+  before_action :authenticate_user!
+  layout 'developer'
   def install
   	respond_to do |format|
   		lms = Lm.new(lm_params)
@@ -12,65 +14,49 @@ class LmsController < ApplicationController
 	  end
   end
 
-  def lms_create
-    name = params[:name]
-    domain = params[:domain]
-    school_address = params[:school_address]
-    school_telephone = params[:school_telephone]
-    school_email = params[:school_email]
-    admin_email = params[:admin_email]
-    admin_name = params[:admin_name]
-    principle_name = params[:principle_name]
-    lms = Lm.create(:name => name, :domain => domain, :school_address => school_address, :school_telephone => school_telephone, :school_email => school_email, :admin_email => admin_email, :admin_name => admin_name, :principle_name => principle_name)
-    if lms.save
-      render :json => {
-        :meta => {
-          :success => "Success."
-        },
-        :lms => lms
-      }
+  def index
+    @lms = current_user.lms.paginate(:page => params[:page]).order('id DESC')
+  end
+
+  def new
+    @lm = Lm.new
+  end
+
+  def create
+    @lm = Lm.new(lm_params)
+    @lm.user = current_user
+    if @lm.save
+      flash[:notice] = "Create success!"
+      redirect_to @lm
     else
-      render :json => {
-        :meta => {
-          :error => "Create new lms error."
-        }
-      }
+      render new_lm_path
     end
   end
 
-  def lms_update
-    lm_id = params[:id]
-    lms = Lm.find(lm_id)
-    name = params[:name]
-    domain = params[:domain]
-    school_address = params[:school_address]
-    school_telephone = params[:school_telephone]
-    school_email = params[:school_email]
-    admin_email = params[:admin_email]
-    admin_name = params[:admin_name]
-    principle_name = params[:principle_name]
-    if lms
-      if lms.update_attributes(:name => name, :domain => domain, :school_address => school_address, :school_telephone => school_telephone, :school_email => school_email, :admin_email => admin_email, :admin_name => admin_name, :principle_name => principle_name)
-        render :json => {
-          :meta => {
-            :success => "Success."
-            },
-            :lms => lms
-          }
-      else
-        render :json => {
-          :meta => {
-            :error => "Update lms failed."
-          }
-        }
-      end
+  def show
+    @lm = current_user.lms.where(:id => params[:id]).first
+  end
+
+  def edit
+    @lm = current_user.lms.where(:id => params[:id]).first
+  end
+
+  def update
+    @lm = Lm.find(params[:id])
+    @lm.user = current_user
+    if @lm.update(lm_params)
+      flash[:notice] = "Update success!"
+      redirect_to @lm
     else
-      render :json => {
-        :meta => {
-          :error => "Could not find lms."
-        }
-      }
+      render edit_lm_path(@lm)
     end
+  end
+
+  def destroy
+    @lm = Lm.find(params[:id])
+    @lm.destroy
+    flash[:notice] = "Delete successfull"
+    redirect_to lms_path
   end
 
   def get_lms_install
@@ -95,6 +81,6 @@ class LmsController < ApplicationController
   private
 
   def lm_params
-    params.require(:lm).permit(:name, :domain, :school_address, :school_telephone, :school_email, :admin_email, :admin_name, :principle_name)
+    params.require(:lm).permit(:name, :domain, :school_name, :school_address, :school_telephone, :school_email, :admin_email, :admin_name, :principle_name, :brand)
   end
 end

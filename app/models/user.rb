@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :applications, :dependent => :destroy
   has_one :user_paypal, :dependent => :destroy
   has_one :user_profile, :dependent => :destroy
+  has_many :lms, :dependent => :destroy
 
   after_create :build_profile
   def build_profile
