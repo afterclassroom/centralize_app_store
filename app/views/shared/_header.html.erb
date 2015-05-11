@@ -28,7 +28,7 @@
 					<% else %>
 					<ul class="nav navbar-nav pull-right">
 						<li class="dropdown active">
-							<a title="">
+							<a title="" style="padding: 4px 10px 4px 4px;">
 								<%= image_tag current_user.avatar(:thumb), :size => '40', :style=>"width: 63px;" %>
 								<% if current_user.user_profile.name.blank? %>
 									<%= truncate(current_user.email, :length => 30, :omission => "...") %>

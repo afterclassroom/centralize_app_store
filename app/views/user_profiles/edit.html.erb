@@ -30,7 +30,7 @@
 			<div class="span4" id="image-style">
 				<%= u.label :avatar %>
 				<%= u.file_field :avatar, :hidden => true %>
-				<%= image_tag current_user.avatar, :size => "200", :id => "avatar" %>
+				<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "width: 200px;" %>
 			</div>
 			<div class="span4">
 				<%= u.label :email %>
