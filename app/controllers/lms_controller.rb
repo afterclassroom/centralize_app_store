@@ -1,5 +1,5 @@
 class LmsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => :get_lms_install
   layout 'developer'
   def install
   	respond_to do |format|
@@ -61,13 +61,15 @@ class LmsController < ApplicationController
 
   def get_lms_install
     access_token = params[:access_token]
-    lms = Lm.find_by_access_token(access_token)
-    if lms
+    lm = Lm.find_by_access_token(access_token)
+    if lm
       render :json => {
         :meta => {
           :success => "Success."
         },
-        :lms => lms
+        :lm => {
+          :brand_img => lm.brand.url
+        }
       }
     else
       render :json => {
