@@ -85,7 +85,7 @@ class ApiController < ApplicationController
 		end
 	end
 
-	def users
+	def user
 		lm_id = params[:lms_id]
 		lms = get_lms(lm_id)
 		if lms
