@@ -8,9 +8,11 @@ class UserProfilesController < ApplicationController
 	def update
 		@user_profile = current_user.user_profile
 		if @user_profile.update_attributes(user_profile_params) && current_user.update_attributes(user_params)
-			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id), :notice => "Change profile successfull"
+			flash[:edit_profile_success] = "Change profile successfull"
+			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id)
 		else
-			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id), :alert => "Change profile failed"
+			flash[:edit_profile_error] = "Change profile failed"
+			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id)
 		end
 	end
 

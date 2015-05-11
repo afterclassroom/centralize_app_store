@@ -30,7 +30,7 @@
 			<div class="span4" id="image-style">
 				<%= u.label :avatar %>
 				<%= u.file_field :avatar, :hidden => true %>
-				<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "width: 200px;" %>
+				<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;" %>
 			</div>
 			<div class="span4">
 				<%= u.label :email %>
@@ -58,8 +58,8 @@
 <script>
 	$( document ).ready(function() {
 
-		var msg_error = '<%= alert %>';
-		var msg_success = '<%= notice %>'
+		var msg_success = '<%= flash[:edit_profile_success] %>';
+		var msg_error = '<%= flash[:edit_profile_error] %>';
 		if (msg_error != '') {
 			setTimeout(function () {
 				swal("", msg_error, "error");
