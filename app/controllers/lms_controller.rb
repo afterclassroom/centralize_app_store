@@ -68,7 +68,8 @@ class LmsController < ApplicationController
           :success => "Success."
         },
         :lm => {
-          :brand_img => lm.brand.url
+          :brand_img => lm.brand.url,
+          :brand_file_name => lm.brand_file_name
         }
       }
     else
