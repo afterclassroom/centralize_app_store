@@ -19,6 +19,7 @@ class LmsController < ApplicationController
   end
 
   def new
+    @body_class = 'page-lmsform'
     @lm = Lm.new
   end
 
@@ -38,6 +39,7 @@ class LmsController < ApplicationController
   end
 
   def edit
+    @body_class = 'page-lmsform'
     @lm = current_user.lms.where(:id => params[:id]).first
   end
 

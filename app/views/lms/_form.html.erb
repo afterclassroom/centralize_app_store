@@ -11,10 +11,10 @@
 							<span class="glyphicon glyphicon-remove"></span> Clear
 						</button>
 						<!-- image-preview-input -->
-						<div class="btn btn-default image-preview-input" style="padding: 4px 12px;margin-bottom: 0">
+						<div class="btn btn-default image-preview-input" style="padding: 4px 12px;margin-bottom: 0;margin-top: -4px;">
 							<span class="glyphicon glyphicon-folder-open"></span>
 							<span class="image-preview-input-title">Browse</span>
-							<%= f.file_field :brand, :class => "form-control" %>
+							<%= f.file_field :brand, :class => "form-control", :accept => "image/png, image/gif, image/jpeg, image/jpg", :style => "top: -42px;right: -230px;  height: 72px;", :data => {"popover-position" => "top"}, :data => {"popover-offset" => "0,95"} %>
 							<!-- <input class="form-control" name="fileName" type="file" /> -->
 						</div>
 					</span>
@@ -36,7 +36,7 @@
 						<div class="btn btn-default image-preview-input" style="padding: 4px 12px;margin-bottom: 0">
 							<span class="glyphicon glyphicon-folder-open"></span>
 							<span class="image-preview-input-title">Change</span>
-							<%= f.file_field :brand, :class => "form-control input-block-level", :data => {:fv => {:field => "fileName"}} %>
+							<%= f.file_field :brand, :class => "form-control input-block-level", :data => {:fv => {:field => "fileName"}}, :data => {"popover-position" => "top"}, :data => {"popover-offset" => "0,95"} %>
 						</div>
 					</span>
 				</div>
@@ -46,17 +46,17 @@
 	<% end %>
 
 	<div class="form-group span4">
-		<label class="col-xs-12 col-sm-3 control-label">Name</label>
+		<label class="col-xs-12 col-sm-3 control-label">Name*</label>
 		<div class="col-xs-12 col-sm-7">
-			<%= f.text_field :name, :class => "form-control input-block-level required" %>
+			<%= f.text_field :name, :class => "form-control input-block-level required", :data => {"popover-position" => "top"}, :data => {"popover-offset" => "0,145"} %>
 			<!-- <input class="form-control input-block-level" name="fullName" type="text" /> -->
 		</div>
 	</div>
 
 	<div class="form-group span4">
-		<label class="col-xs-12 col-sm-3 control-label">Domain</label>
+		<label class="col-xs-12 col-sm-3 control-label">Domain*</label>
 		<div class="col-xs-12 col-sm-7">
-			<%= f.text_field :domain, :class => "form-control input-block-level required" %>
+			<%= f.text_field :domain, :class => "form-control input-block-level required", :data => {"popover-position" => "top"}, :data => {"popover-offset" => "0,145"} %>
 			<!-- <input class="form-control input-block-level" name="domain" type="text" /> -->
 		</div>
 	</div>
@@ -64,7 +64,7 @@
 	<div class="form-group span4">
 		<label class="col-xs-12 col-sm-3 control-label">School Name</label>
 		<div class="col-xs-12 col-sm-7">
-			<%= f.text_field :school_name, :class => "form-control input-block-level required" %>
+			<%= f.text_field :school_name, :class => "form-control input-block-level"%>
 			<!-- <input class="form-control input-block-level" name="address" type="text" /> -->
 		</div>
 	</div>
@@ -120,8 +120,12 @@
 	<div class="form-group span4">
 		<label class="col-xs-12 col-sm-3 control-label">&nbsp;</label>
 		<div class="col-xs-12 col-sm-7">
-			<button type="submit" class="btn btn-primary" id="submitBtn">Create</button>
-			<%= link_to 'Back', lms_path, :class => "btn btn-info" %>
+			<% if @lm.name.nil? %>
+				<button type="submit" class="btn btn-primary" id="submitBtn">Create</button>
+			<% else %>
+				<button type="submit" class="btn btn-info" id="submitBtn">Update</button>
+			<% end %>
+			<%= link_to 'Back', lms_path, :class => "btn btn-default" %>
 			<!-- <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">Cancel</button> -->
 		</div>
 	</div>
