@@ -25,16 +25,16 @@
 </div>
 
 <div class="container" id="user-profile-form">
-	<%= form_for [current_user, @user_profile], :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
+	<%= form_for [current_user, @user_profile], :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
 		<%= fields_for current_user do |u| %>
 			<div class="span4" id="image-style">
 				<%= u.label :avatar %>
-				<%= u.file_field :avatar, :hidden => true %>
+				<%= u.file_field :avatar, :hidden => true, :accept => "image/png, image/gif, image/jpeg, image/jpg" %>
 				<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;" %>
 			</div>
 			<div class="span4">
 				<%= u.label :email %>
-				<%= u.email_field :email, :class => "input-block-level required" %>
+				<%= u.email_field :email, :class => "input-block-level required email" %>
 			</div>
 		<% end %>
 
