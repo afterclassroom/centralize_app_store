@@ -6,8 +6,8 @@ class UserProfilesController < ApplicationController
 	end
 
 	def update
-		@user_profile = current_user.user_profile
-		if @user_profile.update_attributes(user_profile_params) && current_user.update_attributes(user_params)
+		user_profile = current_user.user_profile
+		if current_user.update_attributes(user_params) && user_profile.update_attributes(user_profile_params)
 			flash[:edit_profile_success] = "Change profile successfull"
 			redirect_to edit_user_user_profile_path(current_user, current_user.user_profile.id)
 		else

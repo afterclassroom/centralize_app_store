@@ -25,28 +25,28 @@
 </div>
 
 <div class="container" id="user-profile-form">
-	<%= form_for @user_profile, :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
-		<%= fields_for current_user do |u| %>
-			<div class="span4" id="image-style">
-				<%= u.label :avatar %>
-				<%= u.file_field :avatar, :hidden => true, :accept => "image/png, image/gif, image/jpeg, image/jpg" %>
-				<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;" %>
-			</div>
+	<%= form_for current_user, :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |u| %>
+		<div class="span4" id="image-style">
+			<%= u.label :avatar %>
+			<%= u.file_field :avatar, :hidden => true, :accept => "image/png, image/gif, image/jpeg, image/jpg" %>
+			<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;" %>
+		</div>
+		<div class="span4">
+			<%= u.label :email %>
+			<%= u.email_field :email, :class => "input-block-level required email" %>
+		</div>
+
+		<%= fields_for @user_profile do |up| %>
 			<div class="span4">
-				<%= u.label :email %>
-				<%= u.email_field :email, :class => "input-block-level required email" %>
+				<%= up.label :name %>
+				<%= up.text_field :name, :class => "input-block-level" %>
+			</div>
+
+			<div class="span4">
+				<%= up.label :address %>
+				<%= up.text_field :address, :class => "input-block-level" %>
 			</div>
 		<% end %>
-
-		<div class="span4">
-			<%= up.label :name %>
-			<%= up.text_field :name, :class => "input-block-level" %>
-		</div>
-
-		<div class="span4">
-			<%= up.label :address %>
-			<%= up.text_field :address, :class => "input-block-level" %>
-		</div>
 
 		<div class="span4">
 	    	<button type="button" data-loading-text="Loading..." class="btn btn-primary" id="update_profile">Update</button>
