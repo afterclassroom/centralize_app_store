@@ -25,7 +25,7 @@
 </div>
 
 <div class="container" id="user-profile-form">
-	<%= form_for [current_user, @user_profile], :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
+	<%= form_for @user_profile, :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |up| %>
 		<%= fields_for current_user do |u| %>
 			<div class="span4" id="image-style">
 				<%= u.label :avatar %>
