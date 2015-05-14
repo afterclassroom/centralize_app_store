@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  get '/users/:user_id/user_profiles/:id' => 'user_profiles#show', as: :user_profile
+  get '/users/:user_id/user_profiles/:name' => 'user_profiles#show', as: :user_profile
   get '/users/:user_id/user_profiles/:id/edit' => 'user_profiles#edit', as: :edit_user_user_profile
   match '/users/:user_id/user_profiles/:id' => 'user_profiles#update', as: :user_user_profile, via: [:patch, :put]
 
