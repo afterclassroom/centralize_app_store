@@ -25,7 +25,7 @@
 </div>
 
 <div class="container" id="user-profile-form">
-	<%= form_for current_user, :url => user_profile_path(current_user, @user_profile), :html => { :multipart => true, :id => "edit_profile_form" } do |u| %>
+	<%= form_for current_user, :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |u| %>
 		<div class="span4" id="image-style">
 			<%= u.label :avatar %>
 			<%= u.file_field :avatar, :hidden => true, :accept => "image/png, image/gif, image/jpeg, image/jpg" %>
