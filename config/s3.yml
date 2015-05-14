@@ -1,0 +1,6 @@
+production:
+  access_key_id: AKIAISOO2GORTSRQ64TA
+  secret_access_key: 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
+staging:
+  access_key_id: AKIAISOO2GORTSRQ64TA
+  secret_access_key: 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
