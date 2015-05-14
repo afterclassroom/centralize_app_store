@@ -28,8 +28,8 @@
 	<%= form_for current_user, :url => user_user_profile_path, :html => { :multipart => true, :id => "edit_profile_form" } do |u| %>
 		<div class="span4" id="image-style">
 			<%= u.label :avatar %>
-			<%= u.file_field :avatar, :hidden => true, :accept => "image/png, image/gif, image/jpeg, image/jpg" %>
-			<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;" %>
+			<%= u.file_field :avatar, :accept => "image/png, image/gif, image/jpeg, image/jpg", :style => "position: absolute;opacity: 0;" %>
+			<%= image_tag current_user.avatar, :size => "200", :id => "avatar", :style => "height: 200px;position: relative;" %>
 		</div>
 		<div class="span4">
 			<%= u.label :email %>
