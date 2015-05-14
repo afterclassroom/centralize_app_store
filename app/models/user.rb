@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     UserProfile.create(user: self)
   end
 
+  # Paperclip
   has_attached_file :avatar, {
     :bucket => BUCKET_IMG,
     :default_url => "http://gotoclassroom.com/assets/bg/user.png",

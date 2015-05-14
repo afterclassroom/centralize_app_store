@@ -1,0 +1,43 @@
+<div class="page-title">
+	<div class="container">
+		<h2>Profiles</h2>
+	</div>
+</div>
+
+<div class="container">
+<% if !@user_profile.blank? %>
+	<div class="form-horizont">
+		<div class="brand-img">
+			<%= image_tag current_user.avatar.url %>
+		</div>
+
+		<div style="overflow: hidden;">
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Name: </label>
+				<div>&nbsp;<%= @user_profile.name %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Email: </label>
+				<div>&nbsp;<%= current_user.email %></div>
+			</div>
+
+			<div class="form-group" id="field-style">
+				<label class="span2 control-label" id="label-style">Address: </label>
+				<div>&nbsp;<%= @user_profile.address %></div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+<script>
+	$(document).ready(function() {
+		var err_msg = "<%= flash[:notice] %>";
+		if (err_msg != '') {
+			setTimeout(function () {
+				swal("", err_msg, "error");
+			}, 200);
+		}
+	})
+</script>

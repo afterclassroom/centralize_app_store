@@ -1,5 +1,10 @@
 class UserProfilesController < ApplicationController
+	before_action :authenticate_user!
 	layout 'developer'
+
+	def show
+		@user_profile = current_user.user_profile
+	end
 
 	def edit
 		@user_profile = current_user.user_profile
