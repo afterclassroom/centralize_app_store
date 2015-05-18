@@ -64,7 +64,7 @@ class LmsController < ApplicationController
   end
 
   def check_lms
-    access_token = params[:access_token]
+    access_token = params[:access_key]
     lm = Lm.find_by_access_token(access_token)
     if lm
       render :json => {
