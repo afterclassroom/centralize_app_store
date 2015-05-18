@@ -63,7 +63,7 @@ class LmsController < ApplicationController
     redirect_to lms_path
   end
 
-  def check_lms
+  def check
     access_token = params[:access_key]
     lm = Lm.find_by_access_token(access_token)
     if lm
