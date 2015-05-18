@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'api/users/my_classrooms' => 'api#users_my_classrooms'
   get 'api/users/my_yearbooks' => 'api#users_my_yearbooks'
 
-  get 'lms_install' => 'lms#get_lms_install'
+  get 'lms/check_lms/:access_token' => 'lms#check_lms'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

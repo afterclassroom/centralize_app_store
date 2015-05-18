@@ -27,9 +27,10 @@ class LmsController < ApplicationController
     @lm = Lm.new(lm_params)
     @lm.user = current_user
     if @lm.save
-      flash[:notice] = "Create success!"
+      flash[:lms_notice] = "Create success! The access token was created below. You can use it to install your lms."
       redirect_to @lm
     else
+      flash[:lms_error] = "Create error!"
       render new_lm_path
     end
   end
@@ -47,9 +48,10 @@ class LmsController < ApplicationController
     @lm = Lm.find(params[:id])
     @lm.user = current_user
     if @lm.update(lm_params)
-      flash[:notice] = "Update success!"
+      flash[:lms_notice] = "Update success!"
       redirect_to @lm
     else
+      flash[:lms_error] = "Update error!"
       render edit_lm_path(@lm)
     end
   end
@@ -61,24 +63,16 @@ class LmsController < ApplicationController
     redirect_to lms_path
   end
 
-  def get_lms_install
+  def check_lms
     access_token = params[:access_token]
     lm = Lm.find_by_access_token(access_token)
     if lm
       render :json => {
-        :meta => {
-          :success => "Success."
-        },
-        :lm => {
-          :brand_img => lm.brand.url,
-          :brand_file_name => lm.brand_file_name
-        }
+        :msg => "Yes"
       }
     else
       render :json => {
-        :meta => {
-          :error => "Could not find lms."
-        }
+        :msg => "No"
       }
     end
   end

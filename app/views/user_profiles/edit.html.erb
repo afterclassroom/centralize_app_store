@@ -62,13 +62,13 @@
 		var msg_error = '<%= flash[:edit_profile_error] %>';
 		if (msg_error != '') {
 			setTimeout(function () {
-				swal("", msg_error, "error");
+				swal("Error", msg_error, "error");
 			}, 200);
 		}
 
 		if (msg_success != '') {
 			setTimeout(function () {
-				swal("", msg_success, "success");
+				swal("Success", msg_success, "success");
 			}, 200);
 		}
 

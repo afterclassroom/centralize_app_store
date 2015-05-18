@@ -10,3 +10,14 @@
 		<%= render 'form' %>
 	</div>
 <% end %>
+
+<script>
+	$(document).ready(function() {
+		var lms_msg = "<%= flash[:lms_error] %>";
+		if (lms_msg != '') {
+			setTimeout(function () {
+				swal("Error", lms_msg, "error");
+			}, 200);
+		}
+	});
+</script>
