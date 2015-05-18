@@ -1,5 +1,5 @@
 class LmsController < ApplicationController
-  before_action :authenticate_user!, :except => :get_lms_install
+  before_action :authenticate_user!, :except => :check
   layout 'developer'
   def install
   	respond_to do |format|
