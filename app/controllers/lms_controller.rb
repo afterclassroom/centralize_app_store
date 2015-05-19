@@ -67,13 +67,9 @@ class LmsController < ApplicationController
     access_token = params[:access_key]
     lm = Lm.find_by_access_token(access_token)
     if lm
-      render :json => {
-        :msg => "Yes"
-      }
+      render :text => "Yes"
     else
-      render :json => {
-        :msg => "No"
-      }
+      render :text => "No"
     end
   end
 
