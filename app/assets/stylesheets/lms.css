@@ -240,3 +240,16 @@ a:focus, a:hover {
  .page-lmsform .popover.top .arrow {
   border-top-color: red;
 }
+
+.import_csv_style {
+  border-bottom: 1px solid #eee;
+  margin-top: 50px;
+}
+
+.import_csv_style h3 {
+  font-weight: 500;
+}
+
+.csv_form_upload {
+  margin-top: 20px;
+}

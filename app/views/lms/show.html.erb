@@ -1,3 +1,7 @@
+<script src="/assets/jquery.validate.js"></script>
+<link rel="stylesheet" href="/assets/jquery.validate.bootstrap.popover.css" />
+<script src='/assets/jquery.validate.bootstrap.popover.js'></script>
+
 <nav class="navconer navbar-default" style="background:#f8f8f8;">
 	<div class="container">
 		<div class="navbar-header" style="float: left;">
@@ -71,7 +75,45 @@
 			</div>
 		</div>
 
+		<div class="import_csv_style"><h3 style="margin-bottom: 5px;">Import CSV File</h3></div>
 
+
+		<div class="csv_form_upload" id="field-style">
+			<div class="span6">
+				<%= form_tag "", :multipart => true, :id => "csv_import_form" do %>
+					<div>
+						<label style="margin-bottom: -10px;">Import File</label>
+						<%= file_field_tag :file, :style => "visibility:hidden; position: absolute; margin-top: 25px;", :id => "csvfile", :class => "required" %>
+						<input type="file" name="file" style="visibility:hidden; position: absolute; margin-top: 25px;" id="csvfile" class="required" /><br/>
+						<div class="input-append">
+							<input type="text" name="subfile" id="subfile" class="input-xlarge" style="height: inherit;" readonly>
+							<a href="javascript:;" class="btn" id="browse_btn">Browse</a>
+						</div>
+						<%= hidden_field_tag 'access_token', @lm.access_token %>
+					</div>
+					<button id="classrooms_import_btn" class="btn btn-primary">Import classroom</button>
+					<button id="teachers_import_btn" class="btn btn-primary">Import teachers</button>
+					<button id="students_import_btn" class="btn btn-primary">Import students</button>
+					<button id="rosters_import_btn" class="btn btn-primary">Import rosters</button>
+				<% end %>
+			</div>
+			<div class="csv_download_sample_file span4">
+				<p style="position: absolute;">You can download CSV sample files
+					<div class="dropdown" style="margin-left: 233px;">
+						<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" style="color: blue; cursor: pointer;">
+							here
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li><a href="/csv_file_datas/import_courses.csv" id="classrooms_download_btn" download>Download classroom file</a></li>
+							<li><a href="/csv_file_datas/import_teachers.csv" id="teachers_download_btn">Download teacher file</a></li>
+							<li><a href="/csv_file_datas/import_students.csv" id="students_download_btn">Download student file</a></li>
+							<li><a href="/csv_file_datas/import_rosters.csv" id="rosters_download_btn">Download roster file</a></li>
+						</ul>
+					</div>
+				</p>
+			</div>
+		</div>
 	</div>
 	<% end %>
 </div>
@@ -121,5 +163,60 @@
 				});
 			});
 		});
+
+		//CSV upload form
+		$('#classrooms_import_btn').click(function() {
+			var csv_import_form = $('#csv_import_form');
+			csv_import_form.validate_popover({popoverPosition: 'top'});
+			csv_import_form.validate();
+			if(csv_import_form.valid()){
+				var classrooms_url = "http://" + '<%= @lm.domain %>' + "/centralize_app_store/import_courses";
+				$('#csv_import_form').attr('action', classrooms_url);
+				csv_import_form.submit();
+			}
+		});
+
+		$('#teachers_import_btn').click(function() {
+			var csv_import_form = $('#csv_import_form');
+			csv_import_form.validate_popover({popoverPosition: 'top'});
+			csv_import_form.validate();
+			if(csv_import_form.valid()){
+				var teachers_url = "http://" + '<%= @lm.domain %>' + "/centralize_app_store/import_teachers";
+				$('#csv_import_form').attr('action', teachers_url);
+				csv_import_form.submit();
+			}
+		});
+
+		$('#students_import_btn').click(function() {
+			var csv_import_form = $('#csv_import_form');
+			csv_import_form.validate_popover({popoverPosition: 'top'});
+			csv_import_form.validate();
+			if(csv_import_form.valid()){
+				var students_url = "http://" + '<%= @lm.domain %>' + "/centralize_app_store/import_students";
+				$('#csv_import_form').attr('action', students_url);
+				csv_import_form.submit();
+			}
+		});
+
+		$('#rosters_import_btn').click(function() {
+			var csv_import_form = $('#csv_import_form');
+			csv_import_form.validate_popover({popoverPosition: 'top'});
+			csv_import_form.validate();
+			if(csv_import_form.valid()){
+				var sections_url = "http://" + '<%= @lm.domain %>' + "/centralize_app_store/import_rosters";
+				$('#csv_import_form').attr('action', sections_url);
+				csv_import_form.submit();
+			}
+		});
+
+		$('#browse_btn').click(function() {
+			$('#csvfile').click();
+		})
+
+		$('#csvfile').change(function(){
+			$('#subfile').val($(this).val());
+		});
 	});
+
+	$('.dropdown-toggle').dropdown()
 </script>

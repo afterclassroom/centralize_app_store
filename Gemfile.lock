@@ -33,7 +33,6 @@ GIT
       workflow (= 1.0.0)
 
 GEM
-  remote: https://rubygems.org/
   specs:
     actionmailer (4.1.4)
       actionpack (= 4.1.4)

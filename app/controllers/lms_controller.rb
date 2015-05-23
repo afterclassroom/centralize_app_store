@@ -73,6 +73,10 @@ class LmsController < ApplicationController
     end
   end
 
+  def csv_upload
+
+  end
+
   private
 
   def lm_params
