@@ -52,7 +52,7 @@ end
 gem 'devise'
 
 # The best Rails 3 and Rails 4 forum engine. Ever.http://forem.herokuapp.com
-gem 'forem', :github => "radar/forem", :branch => "rails4"
+gem 'forem', :git => "https://github.com/radar/forem", :branch => "rails4"
 
 # Pagination library for Rails 3, Sinatra, Merb, DataMapper
 gem 'will_paginate'
@@ -70,7 +70,7 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'paperclip'
 
 #Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', :git => 'https://github.com/activeadmin/activeadmin'
 
 # Loads environment variables from `.env`.
 gem 'dotenv-rails'
